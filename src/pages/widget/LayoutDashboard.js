@@ -1,8 +1,11 @@
 import React from 'react'
+import PersistentDrawerLeft from '../../components/sidebar'
 
-const LayoutDashboard = () => {
+const LayoutDashboard = (props) => {
   return (
-    <div>LayoutDashboard</div>
+    <>
+      {props.children}
+    </>
   )
 }
 
