@@ -133,6 +133,8 @@ export default function PersistentDrawerLeft(props) {
                 case 3:
                   route = '/vektor';
                   break;
+                default:
+                  break;
               }
               return (
                 <ListItem key={text} disablePadding>
@@ -148,16 +150,30 @@ export default function PersistentDrawerLeft(props) {
           </List>
         <Divider />
         <List>
-          {['Homepage', 'Trash', 'Spam'].map((text, index) => (
+          {['Homepage', 'About Us',].map((text, index) => {
+            let route;
+            switch (index) {
+              case 0:
+                route = '/'
+                break;
+              case 1:
+                route = '/About'
+                break;
+            
+              default:
+                break;
+            }
+            return(
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to={route}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
-          ))}
+            );
+          })}
         </List>
       </Drawer>
       <Main open={open}>

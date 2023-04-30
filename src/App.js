@@ -5,7 +5,8 @@ import LayoutLanding from "./pages/widget/layoutLanding.js";
 import PersistentDrawerLeft from "./components/sidebar.jsx";
 import BilanganKompleks from "./pages/content/bilangankompleks.jsx";
 import BarisanDeret from "./pages/content/barisanderet.jsx"
-import Matriks from "./pages/content/matriks.jsx"
+import Matriks from "./pages/content/matriks3x3.jsx"
+import Matriks2 from "./pages/content/matriks2x2.jsx"
 import Vektor from "./pages/content/vektor.jsx"
 
 function App() {
