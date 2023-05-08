@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Matriks = () => {
+const Determinanordo3 = () => {
   const [matrix, setMatrix] = useState([
     ['', '', ''],
     ['', '', ''],
@@ -100,9 +100,11 @@ const Matriks = () => {
       <div>
       {menampilkanPerhitungan()}
       </div>
+
+
         
     </div>
   );
 };
 
-export default Matriks;
+export default Determinanordo3;

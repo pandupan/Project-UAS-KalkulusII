@@ -16,9 +16,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import FolderCopyTwoToneIcon from '@mui/icons-material/FolderCopyTwoTone';
 import { Link } from 'react-router-dom';
+import { History, Home } from '@mui/icons-material';
+import RemoveRoadOutlinedIcon from '@mui/icons-material/RemoveRoadOutlined';
+import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
+import AddRoadIcon from '@mui/icons-material/AddRoad'; 
+import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 
 const drawerWidth = 240;
 
@@ -67,7 +71,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft(props) {
+export default function Sidebar(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -83,7 +87,7 @@ export default function PersistentDrawerLeft(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar className='bg-green-800'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -118,21 +122,51 @@ export default function PersistentDrawerLeft(props) {
         </DrawerHeader>
         <Divider />
           <List>
-            {['Bilangan Kompleks', 'Barisan & Deret', 'Matriks', 'Vektor'].map((text, index) => {
+            {['Materi',].map((text, index) => {
               let route;
               switch (index) {
                 case 0:
-                  route = '/bilangankompleks';
+                  route = '/materi'
                   break;
-                case 1:
-                  route = '/barisanderet';
+                default:
                   break;
+              }
+              return(
+              <ListItem key={text} disablePadding>
+                <ListItemButton component={Link} to={route}>
+                  <ListItemIcon>
+                    {index === 0 ? <FolderCopyTwoToneIcon/> : null}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              );
+            })}
+          </List>
+          <List>
+          <Divider />
+            <h1 className='flex justify-center font-semibold bg-slate-100'>Matriks 2 x 2</h1>
+          <Divider />
+            {['Determinan', 'minor' ,'Kofaktor', 'Adjoin'].map((text, index) => {
+              let route;
+              let icon;
+              switch (index) {
+                case 0:
+                  route = '/determinan2';
+                  icon = <CalculateOutlinedIcon/>
+                  break;
+                  case 1:
+                  route = '/minor2';
+                  icon = <ExtensionOutlinedIcon/>
+                  break; 
                 case 2:
-                  route = '/matriks';
+                  route = '/kofaktor2';
+                  icon = <AddRoadIcon/>
                   break;
                 case 3:
-                  route = '/vektor';
-                  break;
+                  route = '/adjoin2';
+                  icon = <RemoveRoadOutlinedIcon/>
+                  break;  
                 default:
                   break;
               }
@@ -140,7 +174,7 @@ export default function PersistentDrawerLeft(props) {
                 <ListItem key={text} disablePadding>
                   <ListItemButton component={Link} to={route}>
                     <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      {icon}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                   </ListItemButton>
@@ -148,36 +182,77 @@ export default function PersistentDrawerLeft(props) {
               );
             })}
           </List>
+          <List>
+            <Divider />
+              <h1 className='flex justify-center font-semibold bg-slate-100'>Matriks 3 x 3</h1>
+            <Divider />
+            {['Determinan','minor','Kofakor','Adjoin'].map((text, index) => {
+              let route;
+              let icon;
+              switch (index) {
+                case 0:
+                  route = '/determinan3'
+                  icon = <CalculateOutlinedIcon/>
+                  break;
+                case 1:
+                  route = '/minor3'
+                  icon = <ExtensionOutlinedIcon/>
+                  break;
+                case 2:
+                  route = '/kofaktor3'
+                  icon = <AddRoadIcon/>
+                  break;
+                case 3:
+                  route = '/adjoin3'
+                  icon = <RemoveRoadOutlinedIcon/>
+                  break;
+                default:
+                  break;
+              }
+              return(
+              <ListItem key={text} disablePadding>
+                <ListItemButton component={Link} to={route}>
+                  <ListItemIcon>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              );
+            })}
+          </List>
         <Divider />
-        <List>
-          {['Homepage', 'About Us',].map((text, index) => {
-            let route;
-            switch (index) {
-              case 0:
-                route = '/'
-                break;
-              case 1:
-                route = '/About'
-                break;
-            
-              default:
-                break;
-            }
-            return(
-            <ListItem key={text} disablePadding>
-              <ListItemButton component={Link} to={route}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-            );
-          })}
-        </List>
-      </Drawer>
+          <List>
+            {['Riwayat', 'Home',].map((text, index) => {
+              let route;
+              let icon;
+              switch (index) {
+                case 0:
+                  route = '/riwayat'
+                  icon =  <History/>
+                  break;
+                case 1:
+                  route = '/'
+                  icon = <Home/>
+                  break;
+                default:
+                  break;
+              }
+              return(
+              <ListItem key={text} disablePadding>
+                <ListItemButton component={Link} to={route}>
+                  <ListItemIcon>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              );
+            })}
+          </List>
+        </Drawer>
       <Main open={open}>
-        <DrawerHeader />
+      <DrawerHeader/>
         {props.children}
       </Main>
     </Box>
