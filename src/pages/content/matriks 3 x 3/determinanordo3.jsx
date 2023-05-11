@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const Determinanordo3 = () => {
+const Determinanordo3 = () => { 
   const [matrix, setMatrix] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', ''],
-  ]);
+  ]); 
 
   const [determinant, setDeterminant] = useState(null);
 
