@@ -1,33 +1,33 @@
 import React from 'react'
 import { Navbar } from 'flowbite-react'
-import Logo from '../asset/image/web-logo.png'
+import Logo from '../asset/image/kalkulatorprojek-removebg-preview 1.png'
 import { Link } from 'react-router-dom'
-
+import { Typography } from '@mui/material'
 
 const NavigationBar = () => {
   return (
-    <Navbar fluid={true} rounded={true}>
+    <Navbar className='bg-yellow-100 h-[90px]' fluid={true} rounded={true}>
       <div className='container flex flex-wrap items-center justify-between mx-auto'>
-        <Link to='/' className='flex items-center'>
+        <div className='flex items-center'>
           <img
             src={Logo}
-            className="mr-3 h-6 sm:h-9"
+            className="w-[54px] -mt-2 mr-3 sm:w-[64px] sm:-mt-2"
             alt="Logo Kalkulator"
           />
-          <span className="self-center whitespace-nowrap text-2xl font-semibold text-gray-900 ">
-            Kalkulator Kalkulus II
-          </span>
-        </Link>
+          <Typography className='self-center whitespace-nowrap text-2xl font-semibold text-[#423232]' variant="h5" sx={{ fontFamily: 'Crimson Text' }}>
+            CalMath
+          </Typography>
+        </div>
         <Navbar.Toggle />
-        <Navbar.Collapse>
-          <Navbar.Link >
+        <Navbar.Collapse className='flex flex-wrap items-center gap-2 sm:gap-4'>
+          <Navbar.Link>
             <Link to="/dashboard">
-            <button class="btn btn-success h-10 w-15 -mx-2 text-white">Menu</button>
+              <button className="btn btn-warning bg-[#BC6C25] h-10 w-15 text-white">Menu</button>
             </Link>
           </Navbar.Link>
-          <Navbar.Link >
+          <Navbar.Link>
             <Link to='/riwayat'>
-            <button class="btn btn-success h-10 w-15 -mx-2 text-white">Riwayat</button>
+              <button className="btn btn-warning bg-[#BC6C25] h-10 w-15 text-white">Riwayat</button>
             </Link>
           </Navbar.Link>
         </Navbar.Collapse>
