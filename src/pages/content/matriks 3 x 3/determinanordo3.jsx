@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Typography } from '@mui/material';
+var Latex = require('react-latex')
 
 const Determinanordo3 = () => { 
   const [matrix, setMatrix] = useState([
@@ -57,8 +59,24 @@ const Determinanordo3 = () => {
   }
 
   return (
-    <div>
-      <table className="table-fixed">
+    <>
+     <div className=' mt-11 flex'>
+        <div className='bg-[#FFF8F2] mx-auto h-[900px] w-[200px] shadow-xl'>
+          test
+        </div>
+          
+        <div className='w-[800px] max-h-xl static p-6 bg-[#FFF8F2] shadow-xl rounded-lg justify-center mx-auto'>
+        <div className='flex justify-center static mx-auto'>
+          <div className='absolute rounded-3xl py-2 top-[100px] w-[697px] h-[77px] bg-[#423232] text-center'>
+              <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant='p' sx={{fontFamily : 'Crimson Text'}}>
+                Determinan Ordo 3x3      
+              </Typography>
+          </div>
+        </div>
+          <div className='max-w-md mx-auto mt-20 bg-[#E09132] shadow-xl px-4 py-2 rounded-lg'>
+
+          
+          <table className="table-fixed mx-auto max-w-lg">
         <thead>
           <tr>
             <th className="w-1/3">A</th>
@@ -75,7 +93,7 @@ const Determinanordo3 = () => {
                     type="number"
                     value={cell}
                     onChange={(event) => handleInputChange(event, i, j)}
-                    className="w-full h-full text-center"
+                    className="w-full h-full text-center rounded-lg"
                   />
                 </td>
               ))}
@@ -83,27 +101,53 @@ const Determinanordo3 = () => {
           ))}
         </tbody>
       </table>
+      
+          </div>
 
-      <button
+          <div className='justify-center flex flex-wrap gap-5'>
+          
+          
+          </div>
+      <div className='justify-center flex wrap gap-10'>
+
+      <div className='flex flex-col'>
+      <div className='justify-center flex mt-5'>
+              <Latex>
+                {`$$\\begin{bmatrix} ${matrix.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+              </Latex>
+          </div>
+
+          <button
         onClick={menghitungDeterminan}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-      >
+        className="mt-4 px-4 py-2 bg-[#E09132] text-white rounded-full"
+        >
         Hitung Determinan
       </button>
+      
+
+          </div>
 
       {determinant !== null && (
-        <p className="mt-4">
+        <p className="mt-4 my-6">
           Determinan matriks adalah: <strong>{determinant}</strong>
         </p>
       )}
 
-      <div>
-      {menampilkanPerhitungan()}
-      </div>
+            </div>
 
+          <div>
+      {menampilkanPerhitungan()}
+      </div>          
+        </div>
+        <div className='bg-[#FFF8F2] mx-auto h-[900px] w-[200px] shadow-xl'>
+          test
+        </div>
+      </div>
+    <div>
 
         
     </div>
+    </>
   );
 };
 

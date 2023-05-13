@@ -87,7 +87,7 @@ export default function Sidebar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar className='bg-green-800'>
+        <Toolbar className='bg-[#EA8D29]'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -97,8 +97,8 @@ export default function Sidebar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-              Haloo!!👋, Selamat datang di Kalkulator Kalkulus 🙂
+          <Typography variant="h6" noWrap component="div" sx={{fontFamily:"Merriweather"}}>
+              Haloo Teman Teman!!👋, Selamat datang di CalMath 🙂
           </Typography>
         </Toolbar>
       </AppBar>

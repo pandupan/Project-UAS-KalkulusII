@@ -6,7 +6,7 @@ import { Typography } from '@mui/material'
 
 const NavigationBar = () => {
   return (
-    <Navbar className='bg-yellow-100 h-[90px]' fluid={true} rounded={true}>
+    <Navbar className='bg-yellow-100 h-[90px]' fluid={true} rounded={false}>
       <div className='container flex flex-wrap items-center justify-between mx-auto'>
         <div className='flex items-center'>
           <img

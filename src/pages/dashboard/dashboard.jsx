@@ -4,114 +4,125 @@ import { Link } from 'react-router-dom'
 export const Dashboard = () => {
   return (
     <div className='flex mx-0 justify-center mt-100 auto'>
-      {/* <header className="z-40 bg-gray items-center justify-between w-full mt-6 block p-6 border-none ">
-        <h5 className="text-3xl mx-auto font-bold tracking-tight text-gray-900 dark:text-white">Hal👋, Selamat datang di halaman Dashboard 🙂</h5>
-      </header> */}
       <div className="sm:flex flex-wrap items-stretch justify-center text-center gap-8 mt-10">
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/R4Q9ZzM/Landing-page-amico.png" alt="Home" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/s1DLFbf/Landing-page-amico.png" alt="Materi" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Materi Page</h2>
                         <p className="mb-5">Silahkan Klik Untuk Mengakses Materi Tersedia</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                            <Link to='/materi'>Click Here  →</Link>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                            <Link className='text-white' to='/materi'>Click Here  →</Link>
                             </button>
                         </div>
                     </div>
                     </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/fFSZB5S/Metrics-rafiki.png" alt="List-Data" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/3C4kP9Y/Teaching-pana.png" alt="List-Data" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Manage Data</h2>
-                        <p className='mb-5'>Menampilkan List Data Pekerjaan Tersedia Serta Menambahkan Data</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/determinan2'>Click Here  →</Link>
+                        <h2 className="card-title">Determinan Ordo 2</h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Determinan Ordo 2</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/determinan2'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
                     </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/3cCjkYQ/Reset-password-amico-1.png" alt="Shoes" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/3B1Fq0W/Teacher-amico.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Profile</h2>
-                        <p className='mb-5'>Menampilkan Profile Dari User Serta Menggubah Akun</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/minor2'>Click Here  →</Link>
+                        <h2 className="card-title">Minor Ordo 2</h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Determinan Ordo 2</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/minor2'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
+
                     </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/23ydP9Y/Teacher-rafiki.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/kofaktor2'>Click Here  →</Link>
-                        </button>
-                        </div>
-                    </div>
-                </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/adjoin2'>Click Here  →</Link>
+                        <h2 className="card-title">Kofaktor Ordo 2</h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Kofaktor Ordo 2</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/kofaktor2'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
+
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/QjcyW3P/Teacher-cuate.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/determinan3'>Click Here  →</Link>
+                        <h2 className="card-title">Adjoin Ordo2 </h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Adjoin Ordo 2</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/adjoin2'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/3C4kP9Y/Teaching-pana.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/minor3'>Click Here  →</Link>
+                        <h2 className="card-title">Determinan Ordo 3 </h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Determinan Ordo 3</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/determinan3'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/3B1Fq0W/Teacher-amico.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/kofaktor3'>Click Here  →</Link>
+                        <h2 className="card-title">Minor Ordo 3</h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Adjoin Ordo 3</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/minor3'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 text-gray-800 bg-white shadow-xl">
-                    <figure><img src="https://i.ibb.co/xXnwQGY/Mobile-login-pana.png" alt="Shoes" /></figure>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/23ydP9Y/Teacher-rafiki.png" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Logout </h2>
-                        <p className='mb-5'>Selesai Menggunakan Website, Silahkan Untuk Logout</p>
-                        <div className="card-actions justify-end">
-                        <button className="btn btn-primary">
-                        <Link to='/adjoin3'>Click Here  →</Link>
+                        <h2 className="card-title">Kofaktor Ordo 3</h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Kofaktor Ordo 3</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/kofaktor3'>Click Here  →</Link>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/QjcyW3P/Teacher-cuate.png" alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title">Adjoin Ordo 3 </h2>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Adjoin Ordo 3</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/adjoin3'>Click Here  →</Link>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="card w-80 my-10 text-gray-800 bg-white shadow-xl">
+                    <figure><img src="https://i.ibb.co/hfmv779/Reading-list-bro.png" alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title">Riwayat</h2>
+                        <p className='mb-5'>Menampilkan Riwayat Dari Penggunaan Kalkulator Anda</p>
+                        <div className="card-actions  justify-end">
+                        <button className="btn btn-warning bg-[#E09132]">
+                        <Link className='text-white' to='/adjoin3'>Click Here  →</Link>
                         </button>
                         </div>
                     </div>
