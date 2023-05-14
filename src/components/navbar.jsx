@@ -20,7 +20,7 @@ const NavigationBar = () => {
         </div>
         <Navbar.Toggle />
         <Navbar.Collapse className='flex flex-wrap items-center gap-2 sm:gap-4'>
-          <Navbar.Link>
+          <Navbar.Link >
             <Link to="/dashboard">
               <button className="btn btn-warning bg-[#BC6C25] h-10 w-15 text-white">Menu</button>
             </Link>

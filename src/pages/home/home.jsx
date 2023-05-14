@@ -48,9 +48,9 @@ export const Home = () => {
             </Typography>
           </div> 
           <div className='sm:gap-16 mt-44 mb-20 flex flex-wrap mx-auto justify-center relative '>
-            <div class="flex bg-[#BC6C25] pt-10 pb-20 rounded-lg shadow md:flex-row w-[343px] h-[310px]">
-              <img class="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={questionmark} alt=""/>
-              <div class="flex flex-wrap justify-between p-4 leading-normal">
+            <div className="flex bg-[#BC6C25] pt-10 pb-20 rounded-lg shadow md:flex-row w-[343px] h-[310px]">
+              <img className="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={questionmark} alt=""/>
+              <div className="flex flex-wrap justify-between p-4 leading-normal">
                 <Typography className="text-[#FEFAE0] text-[23px]" variant='p' sx={{fontFamily : 'Merriweather'}}>
                     Memudahkan Analisis Matriks
                 </Typography>
@@ -61,9 +61,9 @@ export const Home = () => {
                   </div>
               </div>
             </div>
-            <div class="flex bg-[#EFDCAC]  py-10 px-6 rounded-lg shadow md:flex-row w-[343px] h-[310px]">
-              <img class="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={clock} alt=""/>
-              <div class="flex flex-wrap justify-between p-4 leading-normal">
+            <div className="flex bg-[#EFDCAC]  py-10 px-6 rounded-lg shadow md:flex-row w-[343px] h-[310px]">
+              <img className="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={clock} alt=""/>
+              <div className="flex flex-wrap justify-between p-4 leading-normal">
                 <Typography className="text-[#3F0707] text-[24px]" variant='p' sx={{fontFamily : 'Merriweather'}}>
                   Efisiensi Waktu
                 </Typography>
@@ -74,9 +74,9 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div class="flex py-10 bg-[#BC6C25] rounded-lg shadow md:flex-row w-[343px] h-[310px]">
-              <img class="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={check} alt=""/>
-              <div class="flex flex-col justify-between p-4 leading-normal">
+            <div className="flex py-10 bg-[#BC6C25] rounded-lg shadow md:flex-row w-[343px] h-[310px]">
+              <img className="object-cover h-1/2 rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src={check} alt=""/>
+              <div className="flex flex-col justify-between p-4 leading-normal">
                 <Typography className="text-[#FEFAE0] text-[24px]" variant='p' sx={{fontFamily : 'Merriweather'}}>
                   Meningkatkan Akurasi
                 </Typography>
