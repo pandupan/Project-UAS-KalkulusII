@@ -18,12 +18,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-
+        <Routes>  
 
           <Route path='/' element=
             {
-              <LayoutLanding>
+              <LayoutLanding> 
                 < Home />
               </LayoutLanding>
             }
@@ -116,8 +115,6 @@ function App() {
             </Sidebar>
           }
           />
-
-
             
         </Routes>
       
