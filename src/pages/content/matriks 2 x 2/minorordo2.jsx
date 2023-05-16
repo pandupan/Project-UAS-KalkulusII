@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Typography } from '@mui/material'
 var Latex = require('react-latex');
 
@@ -10,6 +10,12 @@ const Minorordo2 = () => {
 
   const [minorOrdo2, setMinorOrdo2] = useState(null);
 
+  // Mengambil Data Dari Local Storage & Menambahkan Data Baru
+  const [dataMinorOrdo2, setDataMinorOrdo2] = useState(() => {
+    const storedDataMinorOrdo2 = localStorage.getItem('MinorOrdo2');
+    return storedDataMinorOrdo2 ? JSON.parse(storedDataMinorOrdo2) : [];
+  });
+
   function handleInputChange(event, row, col) {
     const value = parseFloat(event.target.value);
     const newMatrix = [...matrixMinorOrdo2];
@@ -17,6 +23,28 @@ const Minorordo2 = () => {
 
     setMatrixMinorOrdo2(newMatrix);
   }
+
+  // Mengatur Simpan, Hitung, Hasil
+  const SimpanMinorOrdo2 = (e) => {
+    e.preventDefault();
+
+    let dataMinorOrdo2Obj = {
+      ID: 'Minor Ordo 2',
+      MatrixMinorOrdo2: matrixMinorOrdo2,
+      MinorOrdo2: minorOrdo2
+    };
+
+    setDataMinorOrdo2((prevDataMinorOrdo2) => [...prevDataMinorOrdo2, dataMinorOrdo2Obj]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('MinorOrdo2', JSON.stringify(dataMinorOrdo2));
+  }, [dataMinorOrdo2]);
+
+  const ResetMinorOrdo2 = () => {
+    setMinorOrdo2(null);
+    setMatrixMinorOrdo2([['', ''], ['', '']]);
+  };
 
   function handleMinorOrdo2() {
     const [a, b] = matrixMinorOrdo2[0];
@@ -76,7 +104,6 @@ const Minorordo2 = () => {
             </div>
           </div>
           <div className='max-w-md mx-auto mt-10 bg-[#E09132] px-4 py-2 rounded-lg'>
-
              <table className='table-fixed mx-auto max-w-lg'>
           <thead>
             <tr>
@@ -106,11 +133,11 @@ const Minorordo2 = () => {
           <button onClick={handleMinorOrdo2} className="px-4 py-2 bg-[#E09132] text-white rounded-full">
               Tentukan Minor  →
           </button>
-            <button className="px-4 py-2 bg-red-600 text-white rounded-full">
+            <button onClick={ResetMinorOrdo2} className="px-4 py-2 bg-red-600 text-white rounded-full">
               Reset  →
             </button>
             <form>
-              <button className="px-4 py-2 bg-green-600 text-white rounded-full">
+              <button onClick={SimpanMinorOrdo2} className="px-4 py-2 bg-green-600 text-white rounded-full">
                 Simpan  →
               </button>
             </form>
