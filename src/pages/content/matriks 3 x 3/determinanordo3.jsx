@@ -53,34 +53,40 @@ const Determinanordo3 = () => {
     const [a, b, c] = matrixDetOrdo3[0];
     const [d, e, f] = matrixDetOrdo3[1];
     const [g, h, i] = matrixDetOrdo3[2];
-
+  
     const hasilDeterminan =
-      a * (e * i - f * h) -
-      b * (d * i - f * g) +
-      c * (d * h - e * g);
-
+      (a * e * i) +
+      (b * f * g) +
+      (c * d * h) -
+      (c * e * g) -
+      (b * d * i) -
+      (a * f * h);
+  
     setDeterminanOrdo3(hasilDeterminan);
   }
-
+  
   // Menampilkan Perhitungan
   const menampilkanPerhitungan = () => {
     const [a, b, c] = matrixDetOrdo3[0];
     const [d, e, f] = matrixDetOrdo3[1];
     const [g, h, i] = matrixDetOrdo3[2];
-
+  
     const det =
-      a * (e * i - f * h) -
-      b * (d * i - f * g) +
-      c * (d * h - e * g);
-
+      (a * e * i) +
+      (b * f * g) +
+      (c * d * h) -
+      (c * e * g) -
+      (b * d * i) -
+      (a * f * h);
+  
     return (
       <div>
         <h2>Alur Perhitungan:</h2>
-        <p>= ({a} x ({e} x {i} - {f} x {h})) - ({b} x ({d} x {i} - {f} x {g})) + ({c} x ({d} x {h} - {e} x {g}))</p>
+        <p>= ({a} x {e} x {i}) + ({b} x {f} x {g}) + ({c} x {d} x {h}) - ({c} x {e} x {g}) - ({b} x {d} x {i}) - ({a} x {f} x {h})</p>
         <p>= {det}</p>
         <p>Determinan matriks adalah: {det}</p>
       </div>
-  );
+    );
   };
 
   // Menampilkan Matrix Dari Inputan
