@@ -109,7 +109,18 @@ const Minorordo3 = () => {
           </div>
         </div>
       <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-        test (right)
+        <h1>
+          Materi Pembahasan
+        </h1>
+        <p>
+          Minor ordo 3x3 dihasilkan dengan menghilangkan baris dan kolom yang terkait dengan elemen utama yang sedang dihitung.
+        </p>
+        <p>
+          Misalnya, untuk menghitung minor M_ij, kita menghilangkan baris ke-i dan kolom ke-j dari matriks utama
+        </p>
+        <p>
+          
+        </p>
       </div>
     </div>
       </>

@@ -63,10 +63,11 @@ const  Kofaktorordo2 = () => {
   const ResetKofOrdo2 = () => {
     setKofaktorOrdo2(null);
     setMatrixKofaktorOrdo2([['',''],['','']])
+    setTampilKofaktorOrdo2([['',''],['','']])
   }
 
   useEffect(() => {
-      if(kofaktorOrdo2 != null && kofaktorOrdo2 != 0){
+      if(kofaktorOrdo2 !== null && kofaktorOrdo2 !== 0){
         if (kofaktorOrdo2.length > 0) {
           setTampilKofaktorOrdo2([[kofaktorOrdo2[0], kofaktorOrdo2[1]], [kofaktorOrdo2[2], kofaktorOrdo2[3]]]);
         }
@@ -156,7 +157,7 @@ const  Kofaktorordo2 = () => {
             </form>
           </div>
           <div>
-            {kofaktorOrdo2 !== null && (
+            {kofaktorOrdo2 !== [''] && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">

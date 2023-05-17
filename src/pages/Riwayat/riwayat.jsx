@@ -7,12 +7,14 @@ const Riwayat = () => {
   const [riwayatDetOrdo3, setriwayatDetOrdo3] = useState([]);
   const [riwayatMinorOrdo2, setriwayatMinorOrdo2] = useState([]);
   const [riwayatKofOrdo2, setriwayatKofOrdo2] = useState([]);
+  const [riwayatAdjOrdo2, setriwayatAdjOrdo2] = useState([]);
 
   useEffect(() => {
     const dataDetOrdo2 = localStorage.getItem('DetOrdo2');
     const dataDetOrdo3 = localStorage.getItem('DetOrdo3');
     const dataMinorOrdo2 = localStorage.getItem('MinorOrdo2');
     const dataKofOrdo2 = localStorage.getItem('KofOrdo2');
+    const dataAdjOrdo2 = localStorage.getItem('AdjOrdo2');
 
     if (dataDetOrdo2) {
       setriwayatDetOrdo2(JSON.parse(dataDetOrdo2));
@@ -25,6 +27,9 @@ const Riwayat = () => {
     }
     if(dataKofOrdo2){
       setriwayatKofOrdo2(JSON.parse(dataKofOrdo2))
+    }
+    if(dataAdjOrdo2){
+      setriwayatAdjOrdo2(JSON.parse(dataAdjOrdo2))
     }
 
   }, []);
@@ -127,6 +132,7 @@ const Riwayat = () => {
             <Latex>
               {`$$\\begin{bmatrix} ${data.MatrixKofOrdo2.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
             </Latex> 
+            {console.log(data.MatrixKofOrdo2)}
               </div>
             </figure>
             <div className="card-body static">
@@ -138,6 +144,43 @@ const Riwayat = () => {
                    {`$$\\begin{bmatrix}${data.KofaktorOrdo2.map(row => `[${row}]`).join(' ')} \\end{bmatrix}$$`}
                   </Latex>
                   </p>
+                </div>
+                <div className='absolute top-2 right-[-15px] pt-3 rounded-lg bg-[#E09132] h-[40px] w-[55px]'>
+                  <Typography className="text-white font-bold text-center" variant='p' sx={{ fontFamily: 'crimsonText' }}>
+                    #{index + 1}
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="sm:flex gap-10 flex-wrap items-stretch justify-center  text-center mt-10">
+        {riwayatAdjOrdo2.map((data, index) => (
+          <div key={data.ID} className="card w-full sm:w-80 my-10 text-gray-800 bg-white shadow-xl">
+            <div className='flex justify-center border-b-2 pt-2'>
+              <Typography className="card-title" variant='p' sx={{ fontFamily: 'Crimson Text'}}>
+                {data.ID}
+              </Typography>
+            </div>
+            <figure>
+              <div className='mt-4'>
+              <Latex>
+              {`$$\\begin{bmatrix} ${data.MatrixAdjoinOrdo2.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+            </Latex> 
+              </div>
+            </figure>
+            <div className="card-body static">
+              <p className="mb-4">Maka Hasil Adjoin adalah :</p>
+              <div className="card-actions justify-center">
+                <div className="rounded-lg h-6 w-44 border shadow">
+                  <p className='text-black'>
+                  <Latex>
+                  {`$$\\begin{bmatrix} ${data.AdjoinOrdo2[0]} & ${data.AdjoinOrdo2[2]} \\\\ ${data.AdjoinOrdo2[1]} & ${data.AdjoinOrdo2[3]} \\end{bmatrix}$$`}
+                </Latex>
+                  </p>
+                  {console.log(data.MatrixAdjoinOrdo2)}
                 </div>
                 <div className='absolute top-2 right-[-15px] pt-3 rounded-lg bg-[#E09132] h-[40px] w-[55px]'>
                   <Typography className="text-white font-bold text-center" variant='p' sx={{ fontFamily: 'crimsonText' }}>
