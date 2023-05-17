@@ -10,7 +10,7 @@ const Adjoinordo2 = () => {
 
   const [kofaktorOrdo2,setKofaktorOrdo2] = useState([])
 
-  function handleKofaktor(){
+  function handleKofaktor(){ 
     const [a,b] = matrixAdjOrdo2[0]
     const [c,d] = matrixAdjOrdo2[1]
 
@@ -74,7 +74,7 @@ const Adjoinordo2 = () => {
   const resetAdjoinOrdo2 = () => {
     setAdjoinOrdo2(['']);
     setMatrixAdjOrdo2([['', ''], ['', '']]);
-  };
+  }; 
   
   const simpanAdjoinOrdo2 = (e) => {
     e.preventDefault();

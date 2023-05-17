@@ -65,8 +65,6 @@ const Minorordo2 = () => {
   const m21 = `M21 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[2] : 0} \\end{bmatrix}$$`;
   const m22 = `M22 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[3] : 0} \\end{bmatrix}$$`;
 
-  
-
   return (
     <>
       <div className='flex flex-col

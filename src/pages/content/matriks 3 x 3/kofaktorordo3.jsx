@@ -1,28 +1,35 @@
 import React from 'react'
-import { useState } from 'react' 
+import { useState, useEffect } from 'react' 
 import { Typography } from '@mui/material'
+import Latex from 'react-latex'
 
 const Kofaktor3 = () => {
 
-  const [matrix,setMatrix] = useState([
-    ['','',''],
-    ['','',''],
-    ['','',''],
-  ])
+  const [matrixKofaktorOrdo3, setMatrixKofaktorOrdo3] = useState([
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ]);
+
+  const [tampilKofaktorOrdo3, setTampilKofaktorOrdo3] = useState([
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ]);
   
-  const [kofaktor,setKofaktor] = useState([''])
+  const [kofaktorOrdo3, setKofaktorOrdo3] = useState(['']);
   
   function handleInputChange(event,row,col){
     const value = parseFloat(event.target.value)
-    const newMatrix = [...matrix]
+    const newMatrix = [...matrixKofaktorOrdo3]
     newMatrix[row][col]= isNaN(value) ? 0 : value
-    setMatrix(newMatrix)
+    setMatrixKofaktorOrdo3(newMatrix)
   }
-  
+   
   function handleKofaktorOrdo3(){
-    const [a,b,c] = matrix[0]
-    const [d,e,g] = matrix[1]
-    const [h,i,j] = matrix[2]
+    const [a,b,c] = matrixKofaktorOrdo3[0]
+    const [d,e,g] = matrixKofaktorOrdo3[1]
+    const [h,i,j] = matrixKofaktorOrdo3[2]
 
     const m11 = (e * j - g * i) * 1
 
@@ -44,14 +51,88 @@ const Kofaktor3 = () => {
     
     const hasil = [m11,m12,m13,m21,m22,m23,m31,m32,m33]
 
-    setKofaktor(hasil)
+    setKofaktorOrdo3(hasil)
   }
+
+    // Mengambil Data Dari Local Storage & Menambahkan Data Baru
+  const [dataKofOrdo3, setDataKofOrdo3] = useState(() => {
+    const storedDataKofOrdo3 = localStorage.getItem('KofOrdo3');
+    return storedDataKofOrdo3 ? JSON.parse(storedDataKofOrdo3) : [];
+  });
+
+  // Mengatur Simpan, Hitung, Hasil
+  const SimpanKofOrdo3 = (e) => {
+    e.preventDefault();
+
+    let dataKofOrdo3Obj = {
+      ID: 'Kofaktor Ordo 3',
+      MakmatrixKofaktorOrdo3: matrixKofaktorOrdo3,
+      KofaktorOrdo3: kofaktorOrdo3
+    };
+
+    setDataKofOrdo3((prevDataKofOrdo3) => [...prevDataKofOrdo3, dataKofOrdo3Obj]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('KofOrdo3', JSON.stringify(dataKofOrdo3));
+  }, [dataKofOrdo3]);
+
+  const ResetKofOrdo3 = () => {
+    setKofaktorOrdo3(null);
+    setMatrixKofaktorOrdo3([
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ]);
+    setTampilKofaktorOrdo3([
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ]);
+  };
+
+  useEffect(() => {
+    if (kofaktorOrdo3 !== null && kofaktorOrdo3 !== 0) {
+      if (kofaktorOrdo3.length > 0) {
+        setTampilKofaktorOrdo3([
+
+          [kofaktorOrdo3[0], kofaktorOrdo3[1], kofaktorOrdo3[2]],
+          [kofaktorOrdo3[3], kofaktorOrdo3[4], kofaktorOrdo3[5]],
+          [kofaktorOrdo3[6], kofaktorOrdo3[7], kofaktorOrdo3[8]]
+        ]);
+      }
+    }
+  }, [kofaktorOrdo3]);
   
+  const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 & M13 \\\\ M21 & M22 & M23 \\\\ M31 & M32 & M33 \\end{bmatrix}$$`;
+  const rumusKofaktor = ` =$$\\begin{bmatrix} + & - & + \\\\ - & + & - \\\\ + & - & + \\end{bmatrix}$$`;
+
   return (
     <>
- <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-        <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
-          test (right)
+      <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
+      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+          <h1>Petunjuk Penggunaan :</h1>
+          <li>
+            Masukan angka-angka matriks pada kotak yang tersedia
+          </li>
+          <li>
+            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+          </li>
+          <li>
+            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+          </li>
+          <li>
+            Hasil determinan akan ditampilkan dilayar kalkulator
+          </li>
+          <li>
+            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+          </li>
+          <li>
+            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+          </li>
+          <li>
+            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+          </li>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
           <div className='justify-center'>
@@ -71,7 +152,7 @@ const Kofaktor3 = () => {
           </tr>
         </thead>
         <tbody>
-          {matrix.map((row, i) => (
+          {matrixKofaktorOrdo3.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => (
                 <td key={j}>
@@ -87,27 +168,152 @@ const Kofaktor3 = () => {
           ))}
         </tbody>
       </table>
-          </div>
-          <div className='flex justify-center gap-5 mt-4'>
-                  <button
-        onClick={handleKofaktorOrdo3}
+      </div>
+        <div className='flex justify-center gap-5 mt-4'>
+        <button
+        onClick={()=>{
+          handleKofaktorOrdo3();
+        }}
         className="px-4 py-2 bg-[#E09132] text-white rounded-full"
         >
           Tentukan Kofaktor
         </button>
-            <button className="px-4 py-2 bg-red-600 text-white rounded-full">
+            <button onClick={ResetKofOrdo3} className="px-4 py-2 bg-red-600 text-white rounded-full">
               Reset  →
             </button>
             <form>
-              <button className="px-4 py-2 bg-green-600 text-white rounded-full">
+              <button onClick={SimpanKofOrdo3} className="px-4 py-2 bg-green-600 text-white rounded-full">
                 Simpan  →
               </button>
             </form>
           </div>
           <div>
-	<p className="mt-4">
-          Kofaktornya nya: <strong>{kofaktor[0]} {kofaktor[1]} {kofaktor[2]} {kofaktor[3]}	{kofaktor[4]}{kofaktor[5]}{kofaktor[6]}{kofaktor[7]}{kofaktor[8]}{kofaktor[9]}</strong>
-        </p>
+            {kofaktorOrdo3 !== [''] && (
+              <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
+                <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
+                <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                  Hasil dari kofaktor yang anda cari adalah:
+                </Typography>
+                <div>
+                <Latex>
+                      {`$$\\begin{bmatrix} ${tampilKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                </div>
+                </div>
+                <div className='flex flex-wrap items-center gap-4 justify-center mt-5'>
+
+                <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-4'>
+
+                  <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                    Langkah 0 : mengambarkan Matrix 
+                  </Typography>
+                  </div>
+                  <div className='mb-6'>
+                  <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                </div>
+
+                <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-4'>
+
+                  <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                    Langkah 1 : menentukan M1 
+                  </Typography>
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[0] : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                </div>
+
+                <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 2 : Menentukan M2
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[1]*-1 : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 3 : Menentukan M3
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[2]*-1 : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 4 : Menentukan M4
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[3] : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 5 : Mengalikan hasil minor dengan pola kofaktor
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {hasilMinor}
+                    </Latex>
+                  <Latex>
+                      {rumusKofaktor}
+                    </Latex>
+                  
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 6 : Hasil Kofaktor yang didapatkan adalah
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                  <Latex>
+                      {`$$\\begin{bmatrix} ${tampilKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                </div>
+              </div>
+            )}
           </div>
         </div>
       <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>

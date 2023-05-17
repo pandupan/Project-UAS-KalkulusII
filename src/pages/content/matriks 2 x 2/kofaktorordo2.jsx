@@ -8,7 +8,7 @@ const  Kofaktorordo2 = () => {
   const[matrixKofaktorOrdo2,setMatrixKofaktorOrdo2] = useState([
     ['',''],
     ['','']
-  ])
+  ]) 
 
   const [tampilKofaktorOrdo2, setTampilKofaktorOrdo2] = useState([['',''],['','']])
   const [kofaktorOrdo2,setKofaktorOrdo2] = useState([''])
@@ -40,7 +40,7 @@ const  Kofaktorordo2 = () => {
   // Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataKofOrdo2, setDataKofOrdo2] = useState(() => {
     const storedDataKofOrdo2 = localStorage.getItem('KofOrdo2');
-    return storedDataKofOrdo2 ? JSON.parse(storedDataKofOrdo2) : [];
+    return storedDataKofOrdo2 ? JSON.parse(storedDataKofOrdo2) : []; 
   });
 
   //Mengatur Simpan,Hitung, Hasil 
