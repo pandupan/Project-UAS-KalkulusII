@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from './pages/home/home.jsx' ;
+import Home from "../src/pages/home/home"
 import Dashboard from "./pages/dashboard/dashboard.jsx";
 import LayoutLanding from "./pages/widget/layoutLanding.js";
 import Sidebar from "./components/sidebar.jsx";
-import Materi from './pages/content/Materi/materi.jsx'
 import Riwayat from './pages/Riwayat/riwayat.jsx'
 import Determinanordo2 from './pages/content/matriks 2 x 2/determinanordo2.jsx'
 import Determinanordo3 from './pages/content/matriks 3 x 3/determinanordo3.jsx'
@@ -23,7 +22,7 @@ function App() {
           <Route path='/' element=
             {
               <LayoutLanding> 
-                < Home />
+                <Home />
               </LayoutLanding>
             }
           />
@@ -32,14 +31,6 @@ function App() {
             { 
               <Sidebar>
                 < Dashboard />
-              </Sidebar>
-            }
-          />
-
-          <Route path='/materi' element=
-            { 
-              <Sidebar>
-                <Materi />
               </Sidebar>
             }
           />

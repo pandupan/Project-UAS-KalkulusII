@@ -18,7 +18,9 @@ const Kofaktor3 = () => {
   ]);
   
   const [kofaktorOrdo3, setKofaktorOrdo3] = useState(['']);
-  
+
+  const [isClicked, setIsClicked] = useState(false);
+
   function handleInputChange(event,row,col){
     const value = parseFloat(event.target.value)
     const newMatrix = [...matrixKofaktorOrdo3]
@@ -52,6 +54,7 @@ const Kofaktor3 = () => {
     const hasil = [m11,m12,m13,m21,m22,m23,m31,m32,m33]
 
     setKofaktorOrdo3(hasil)
+    setIsClicked(true);
   }
 
     // Mengambil Data Dari Local Storage & Menambahkan Data Baru
@@ -66,7 +69,7 @@ const Kofaktor3 = () => {
 
     let dataKofOrdo3Obj = {
       ID: 'Kofaktor Ordo 3',
-      MakmatrixKofaktorOrdo3: matrixKofaktorOrdo3,
+      MatrixKofaktorOrdo3: matrixKofaktorOrdo3,
       KofaktorOrdo3: kofaktorOrdo3
     };
 
@@ -89,6 +92,7 @@ const Kofaktor3 = () => {
       ['', '', ''],
       ['', '', '']
     ]);
+    setIsClicked(false)
   };
 
   useEffect(() => {
@@ -188,7 +192,7 @@ const Kofaktor3 = () => {
             </form>
           </div>
           <div>
-            {kofaktorOrdo3 !== [''] && (
+            {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">

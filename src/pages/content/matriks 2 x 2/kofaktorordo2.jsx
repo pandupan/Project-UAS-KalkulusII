@@ -157,7 +157,7 @@ const  Kofaktorordo2 = () => {
             </form>
           </div>
           <div>
-            {kofaktorOrdo2 !== [''] && (
+            {kofaktorOrdo2 !== [''] && kofaktorOrdo2 !== NaN && kofaktorOrdo2 !== null && kofaktorOrdo2 !== undefined  && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">

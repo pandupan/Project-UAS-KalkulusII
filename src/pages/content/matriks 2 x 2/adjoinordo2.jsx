@@ -10,6 +10,9 @@ const Adjoinordo2 = () => {
 
   const [kofaktorOrdo2,setKofaktorOrdo2] = useState([])
 
+  const [isClicked, setIsClicked] = useState(false);
+
+
   function handleKofaktor(){ 
     const [a,b] = matrixAdjOrdo2[0]
     const [c,d] = matrixAdjOrdo2[1]
@@ -25,6 +28,8 @@ const Adjoinordo2 = () => {
     const hasil = [m11,m12,m21,m22]
 
     setKofaktorOrdo2(hasil)
+    setIsClicked(true);
+
   } 
 
   function handleInputChange(event, row, col) {
@@ -74,6 +79,7 @@ const Adjoinordo2 = () => {
   const resetAdjoinOrdo2 = () => {
     setAdjoinOrdo2(['']);
     setMatrixAdjOrdo2([['', ''], ['', '']]);
+    setIsClicked(false)
   }; 
   
   const simpanAdjoinOrdo2 = (e) => {
@@ -157,10 +163,12 @@ const Adjoinordo2 = () => {
               </button>
             </form>
           </div>
-          <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
+          <div>
+            { isClicked && (
+              <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                Hasil dari adjoin yang anda cari adalah: 
+                  Hasil dari adjoin yang anda cari adalah: 
                 </Typography>
                 <Latex>
                   {`$$\\begin{bmatrix} ${adjoinOrdo2[0]} & ${adjoinOrdo2[2]} \\\\ ${adjoinOrdo2[1]} & ${adjoinOrdo2[3]} \\end{bmatrix}$$`}
@@ -299,6 +307,8 @@ const Adjoinordo2 = () => {
                   
                 </div>
               </div>
+            )}
+          </div>
 
         </div>
       <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>

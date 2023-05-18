@@ -12,6 +12,9 @@ const Adjoinordo3 = () => {
   ]);
   
   const [adjoinOrdo3, setAdjoinOrdo3] = useState(['']);
+
+  const [isClicked, setIsClicked] = useState(false);
+
   
   const resetAdjoinOrdo3 = () => {
     setAdjoinOrdo3(['']);
@@ -20,6 +23,7 @@ const Adjoinordo3 = () => {
       ['', '', ''],
       ['', '', '']
     ]);
+    setIsClicked(false)
   };
   
   const [dataAdjOrdo3, setDataAdjOrdo3] = useState(() => {
@@ -84,6 +88,7 @@ const Adjoinordo3 = () => {
      ]
 
     setAdjoinOrdo3(nilaiAdjoin)
+    setIsClicked(true)
   }
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
@@ -101,7 +106,7 @@ const Adjoinordo3 = () => {
     <div className='justify-center'>
       <div className='rounded-3xl py-2 max-h-screen bg-[#423232] text-center w-full'>
         <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant='p' sx={{ fontFamily: 'Crimson Text' }}>
-          Kofaktor Ordo 3x3
+          Adjoin Ordo 3x3
         </Typography>
       </div>
     </div>
@@ -148,6 +153,9 @@ const Adjoinordo3 = () => {
         </button>
       </form>
     </div>
+
+    <div>
+      {isClicked && (
     <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
@@ -290,6 +298,9 @@ const Adjoinordo3 = () => {
                   
                 </div>
               </div>
+
+      )}
+    </div>
 
   
   

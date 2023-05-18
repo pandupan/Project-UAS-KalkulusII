@@ -23,6 +23,7 @@ import RemoveRoadOutlinedIcon from '@mui/icons-material/RemoveRoadOutlined';
 import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
 import AddRoadIcon from '@mui/icons-material/AddRoad'; 
 import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 const drawerWidth = 240;
 
@@ -122,11 +123,11 @@ export default function Sidebar(props) {
         </DrawerHeader>
         <Divider />
           <List>
-            {['Materi',].map((text, index) => {
+            {['Dashboard',].map((text, index) => {
               let route;
               switch (index) {
                 case 0:
-                  route = '/materi'
+                  route = '/dashboard'
                   break;
                 default:
                   break;
@@ -223,15 +224,30 @@ export default function Sidebar(props) {
           </List>
         <Divider />
           <List>
-            {['Riwayat', 'Home',].map((text, index) => {
+            {['Riwayat','Hapus Riwayat', 'Home',].map((text, index) => {
               let route;
               let icon;
+              let OnClickAction;
               switch (index) {
                 case 0:
                   route = '/riwayat'
                   icon =  <History/>
                   break;
                 case 1:
+                  OnClickAction = () => {
+                    localStorage.clear("DetOrdo2");
+                    localStorage.clear("MinorOrdo2");
+                    localStorage.clear("KofOrdo2");
+                    localStorage.clear("AdjOrdo2");
+                    localStorage.clear("DetOrdo3");
+                    localStorage.clear("MinorOrdo3");
+                    localStorage.clear("KofOrdo3");
+                    localStorage.clear("AdjOrdo3");
+                    window.location.reload();
+                  }
+                  icon =  <DeleteForeverOutlinedIcon/>
+                  break;
+                case 2:
                   route = '/'
                   icon = <Home/>
                   break;
@@ -240,7 +256,7 @@ export default function Sidebar(props) {
               }
               return(
               <ListItem key={text} disablePadding>
-                <ListItemButton component={Link} to={route}>
+                <ListItemButton component={Link} to={route} onClick={OnClickAction}>
                   <ListItemIcon>
                     {icon}
                   </ListItemIcon>
