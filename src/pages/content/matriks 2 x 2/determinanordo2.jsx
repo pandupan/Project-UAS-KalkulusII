@@ -81,10 +81,14 @@ const Determinanordo2 = () => {
 
     return (
       <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
-        <h2>Alur Perhitungan:</h2>
-        <p> = &gt; ({a} x {d}) - ({b} x {c}) </p>
-        <p> = &gt; {det} </p>
-        <p>Determinan matriks adalah: {det}</p>
+        <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black flex mb-3">
+          Langkah 3 : Pengoprasian
+        </Typography>
+        <Typography className='flex flex-col justify-center items-center' variant='p' sx={{fontFamily : 'Merriweather'}} >
+        <p>  ({a} x {d}) - ({b} x {c}) </p>
+        <p>  {det} </p>
+        <p>Hasil determinan matrix: {det}</p>
+        </Typography>
       </div>
     );
   };
@@ -100,31 +104,38 @@ const Determinanordo2 = () => {
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          <h1>Petunjuk Penggunaan :</h1>
-          <li>
-            Masukan angka-angka matriks pada kotak yang tersedia
-          </li>
-          <li>
-            Pastikan Anda menginput angka pada determinan ordo 2 x 2 dengan benar agar hasilnya tepat
-          </li>
-          <li>
-            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
-          </li>
-          <li>
-            Hasil determinan akan ditampilkan dilayar kalkulator
-          </li>
-          <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
-          </li>
-          <li>
-            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
-          </li>
-          <li>
-            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
-          </li>
+        <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[830px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+          <div className='flex '>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
+          </div>
+          <br/>
+          <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
+            <ol style={{listStyleType:'decimal'}}>
+              <li>
+                Masukan angka-angka matriks pada kotak yang tersedia
+              </li>
+              <li>
+                Pastikan Anda menginput angka pada determinan ordo 2 x 2 dengan benar agar hasilnya tepat
+              </li>
+              <li>
+                Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+              </li>
+              <li>
+                Hasil determinan akan ditampilkan dilayar kalkulator
+              </li>
+              <li>
+                CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+              </li>
+              <li>
+                Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+              </li>
+              <li>
+                Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+              </li>
+            </ol>
+          </Typography>
         </div>
-        <div className='w-full bg-[#FFF8F2] md:max-w-[697px] p-6 shadow-xl rounded-lg'>
+        <div className='w-full bg-[#FFF8F2] md:max-w-[697px] p-6 shadow-xl rounded-lg mr-4'>
           <div className='justify-center'>
             <div className='rounded-3xl py-2 max-h-screen bg-[#423232] text-center w-full'>
               <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant='p' sx={{ fontFamily: 'Crimson Text' }}>
@@ -208,12 +219,12 @@ const Determinanordo2 = () => {
                 <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : mengoperasikan matrix [a1 x b2] - [b1 -a2]
+                      Langkah 2 : mengoperasikan matrix [A1 x B2] - [B1 x A2]
                     </Typography> 
                   </div>
                     <div className='flex mb-8'>
                       <Latex>{a1b2}</Latex>
-                        <p> - </p>
+                        <p>&nbsp;-&nbsp; </p>
                       <Latex>{a2b1}</Latex>
                     </div>
                   </div>
@@ -225,47 +236,49 @@ const Determinanordo2 = () => {
             )}
           </div>
         </div>
-        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          <h1>Materi Pembahasan</h1>
+        <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+          <div className='flex mb-[14px]'>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
+          </div>
+          <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
           <p>
-            &nbsp; Determinan adalah nilai yang dapat dihitung dari unsur-unsur suatu matriks persegi
+            &nbsp; Determinan adalah nilai yang dapat dihitung dari unsur-unsur suatu matriks persegi,
+            Faktor skala transformasi yang digambarkan oleh matriks juga disebut dengan determinan,
+            lalu determinan dari matriks A dinotasikan dengan det (A) atau |A|.
           </p>
-          <p>
-            &nbsp; Faktor penskalaan transformasi yang digambarkan oleh matriks juga disebut dengan determinan
-          </p>
-          <p>
-          &nbsp; Determinan dari matriks A dinotasikan dengan det (A) atau |A|
-          </p>
-          <h2>
-          &nbsp; Matriks Ordo 2 x 2
+          <h2 className='mt-2 mb-1'>
+          &nbsp; <strong>Matriks Ordo 2 x 2</strong>
           </h2>
+          </Typography>
           <div>
+          <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
             <p>Rumus Umum :</p>
             <Latex>
             {rumusUmum}
             </Latex>
-            <p>
+            <p className='my-1'>
               det (A) = |A| = a.d - b.c
             </p>
             <p>
-              Contoh :
-              <p>
+            &nbsp;<strong>Contoh :</strong>
+              <p className='py-2 mb-1'>
                 Misal Matriks A = <Latex>{contohRumus}</Latex>
               </p>
-              <p>
+              <p className='py2'>
                 |A| = <Latex>{contohRumus}</Latex>
               </p>
-              <p>4-6 = -2 </p>
+              <p className='py-2'>4-6 = -2 </p>
               <p>
-                Ketentuan Determinan Ordo 2 x 2 :
-              <p>1. Jika determinan suatu matriks ordo 2 x 2 adalah nol, maka matriks tersebut tidak memiliki invers</p>
-              <p>2. Jika determinan suatu matriks ordo 2 x 2 tidak sama dengan nol, maka matriks tersebut memiliki invers. Yaitu :</p>
+                <strong>Ketentuan Determinan Ordo 2 x 2 :</strong>
+              <p>1. Jika determinan matriks ordo 2 x 2 adalah nol, maka matriks tersebut tidak memiliki invers</p>
+              <p>2. Jika determinan matriks ordo 2 x 2 tidak sama dengan nol, maka matriks tersebut memiliki invers. Yaitu :</p>
               <p> <Latex>{inversOrdo2x2}</Latex></p>
               </p>
             </p>
+            </Typography>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

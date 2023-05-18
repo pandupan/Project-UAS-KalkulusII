@@ -12,6 +12,7 @@ import Kofaktor2 from './pages/content/matriks 2 x 2/kofaktorordo2.jsx'
 import Kofaktor3 from './pages/content/matriks 3 x 3/kofaktorordo3.jsx'
 import Adjoinordo2 from './pages/content/matriks 2 x 2/adjoinordo2.jsx'
 import Adjoinordo3 from './pages/content/matriks 3 x 3/adjoinordo3.jsx'
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             { 
               <Sidebar>
                 <Determinanordo2 />
+                <Footer />
               </Sidebar>
             }
           />
