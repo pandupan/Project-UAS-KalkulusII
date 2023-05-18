@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Typography } from '@mui/material'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Latex from 'react-latex'
 
 const Adjoinordo3 = () => {
@@ -33,6 +35,17 @@ const Adjoinordo3 = () => {
   
   const simpanAdjoinOrdo3 = (e) => {
     e.preventDefault();
+
+    toast.success('Perhitungan Anda telah disimpan !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   
     let dataAdjoinOrdo3Obj = {
       ID: 'Adjoin Ordo 3',
@@ -153,7 +166,16 @@ const Adjoinordo3 = () => {
         </button>
       </form>
     </div>
-
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      closeOnClick
+      pauseOnHover
+      draggable
+      progress={undefined}
+      theme="light"
+    />
     <div>
       {isClicked && (
     <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>

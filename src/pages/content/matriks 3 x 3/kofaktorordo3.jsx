@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react' 
 import { Typography } from '@mui/material'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Latex from 'react-latex'
 
 const Kofaktor3 = () => {
@@ -66,6 +68,17 @@ const Kofaktor3 = () => {
   // Mengatur Simpan, Hitung, Hasil
   const SimpanKofOrdo3 = (e) => {
     e.preventDefault();
+
+    toast.success('Perhitungan Anda telah disimpan !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
     let dataKofOrdo3Obj = {
       ID: 'Kofaktor Ordo 3',
@@ -191,6 +204,16 @@ const Kofaktor3 = () => {
               </button>
             </form>
           </div>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+          />
           <div>
             {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>

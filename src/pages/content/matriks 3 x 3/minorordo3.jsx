@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Typography } from '@mui/material'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var Latex = require('react-latex');
 
 const Minorordo3 = () => {
@@ -27,6 +29,17 @@ const Minorordo3 = () => {
   // Mengatur Simpan, Hitung, Hasil
   const simpanMinorOrdo3 = (e) => {
     e.preventDefault();
+
+    toast.success('Perhitungan Anda telah disimpan !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   
     let dataMinorOrdo3Obj = {
       ID: 'Minor Ordo 3',
@@ -163,6 +176,16 @@ const Minorordo3 = () => {
               </button>
             </form>
           </div>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+          />
           <div>
             {minorOrdo3 !== null && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>

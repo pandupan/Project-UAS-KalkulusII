@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var Latex = require('react-latex')
 
 const Determinanordo3 = () => { 
@@ -30,6 +32,17 @@ const Determinanordo3 = () => {
   // Mengatur Simpan, Hitung, Hasil
   const SimpanDetOrdo3 = (e) => {
     e.preventDefault();
+
+    toast.success('Perhitungan Anda telah disimpan !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
     let dataDetOrdo3Obj = {
       ID: 'Determinan Ordo 3',
@@ -151,6 +164,16 @@ const Determinanordo3 = () => {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        progress={undefined}
+        theme="light"
+      />
       <div>
         {determinanOrdo3 !== null && (
           <div className='flex flex-wrap mt-4'>
