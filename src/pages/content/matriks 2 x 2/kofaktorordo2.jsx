@@ -13,6 +13,9 @@ const  Kofaktorordo2 = () => {
   const [tampilKofaktorOrdo2, setTampilKofaktorOrdo2] = useState([['',''],['','']])
   const [kofaktorOrdo2,setKofaktorOrdo2] = useState([''])
 
+  const [isClicked, setIsClicked] = useState(false);
+
+
   function handleKofaktor(){
     const [a,b] = matrixKofaktorOrdo2[0]
     const [c,d] = matrixKofaktorOrdo2[1]
@@ -28,6 +31,8 @@ const  Kofaktorordo2 = () => {
     const hasil = [m11,m12,m21,m22]
 
     setKofaktorOrdo2(hasil)
+    setIsClicked(true);
+
   } 
 
   function handleInputChange(event, row, col){
@@ -64,6 +69,7 @@ const  Kofaktorordo2 = () => {
     setKofaktorOrdo2(null);
     setMatrixKofaktorOrdo2([['',''],['','']])
     setTampilKofaktorOrdo2([['',''],['','']])
+    setIsClicked(false)
   }
 
   useEffect(() => {
@@ -157,7 +163,7 @@ const  Kofaktorordo2 = () => {
             </form>
           </div>
           <div>
-            {kofaktorOrdo2 !== [''] && kofaktorOrdo2 !== NaN && kofaktorOrdo2 !== null && kofaktorOrdo2 !== undefined  && (
+            {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
