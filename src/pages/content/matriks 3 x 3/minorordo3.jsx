@@ -30,7 +30,7 @@ const Minorordo3 = () => {
   const simpanMinorOrdo3 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan Anda telah disimpan !!', {
+    toast.success('Perhitungan disimpan 🙂✨ ', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -57,6 +57,16 @@ const Minorordo3 = () => {
   const resetMinorOrdo3 = () => {
     setMinorOrdo3(null);
     setMatrixMinorOrdo3([['', '', ''], ['', '', ''], ['', '', '']]);
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
   
   function handleMinorOrdo3(){
@@ -85,6 +95,17 @@ const Minorordo3 = () => {
     const hasil = [m11,m12,m13,m21,m22,m23,m31,m32,m33]
 
     setMinorOrdo3(hasil)
+    
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
     const m11 = `M11 = $$\\begin{bmatrix} ${minorOrdo3 ? minorOrdo3[0] : 0} \\end{bmatrix}$$`;
@@ -189,6 +210,32 @@ const Minorordo3 = () => {
             progress={undefined}
             theme="light"
           />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
           <div>
             {minorOrdo3 !== null && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
@@ -371,11 +418,6 @@ const Minorordo3 = () => {
                       {`= $$\\begin{bmatrix} ${minorOrdo3 ? minorOrdo3[8] : 0} \\end{bmatrix}$$`}
                     </Latex>
                   </div>
-                  </div>
-
-
-                  <div>
-                    {/* {menampilkanPerhitungan()} */}
                   </div>
                 </div>
               </div>

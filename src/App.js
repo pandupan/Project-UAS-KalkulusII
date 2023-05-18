@@ -49,6 +49,7 @@ function App() {
             { 
               <Sidebar>
                 <Determinanordo3 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -66,6 +67,7 @@ function App() {
             { 
               <Sidebar>
                 <Minorordo3 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -74,6 +76,7 @@ function App() {
             { 
               <Sidebar>
                 <Kofaktor2 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -82,6 +85,7 @@ function App() {
             { 
               <Sidebar>
                 <Kofaktor3 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -90,6 +94,7 @@ function App() {
             { 
               <Sidebar>
                 <Adjoinordo2 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -98,6 +103,7 @@ function App() {
             { 
               <Sidebar>
                 <Adjoinordo3 />
+                <Footer />
               </Sidebar>
             }
           />
@@ -106,6 +112,7 @@ function App() {
           {
             <Sidebar>
               <Riwayat/>
+              <Footer />
             </Sidebar>
           }
           />

@@ -260,12 +260,14 @@ const Riwayat = () => {
                 <div className=" flex flex-wrap rounded-lg h-auto w-44 border shadow">
                   <p className='text-black text-center max-w-[170px]'>
                     <p className=' text-center max-w-[170px]'>
-                      M1, M2, M3, M4, M5, M6, M7, M9, :
                     </p>
-                    <div className='flex flex-wrap '>
-                  <Latex>
-                   {`$$\\begin{bmatrix}${data.MinorOrdo3.map(row => `[${row}]`).join(' ')} \\end{bmatrix}$$`}
-                  </Latex>
+                    <div className='flex flex-wrap justify-center gap-2 '>
+                    <Latex>
+                     {`$$\\begin{bmatrix} M11 & M12  & M13 \\\\ M21 & M22 & M23 \\\\ M31 & M32 & M33 \\end{bmatrix}$$`}
+                    </Latex>
+                      <Latex>
+                        {`$$\\begin{bmatrix} ${data.MinorOrdo3[0]} & ${data.MinorOrdo3[1]}  & ${data.MinorOrdo3[2]} \\\\ ${data.MinorOrdo3[3]} & ${data.MinorOrdo3[4]} & ${data.MinorOrdo3[5]} \\\\ ${data.MinorOrdo3[6]} & ${data.MinorOrdo3[7]} & ${data.MinorOrdo3[8]} \\end{bmatrix}$$`}
+                      </Latex>
                     </div>
                   </p>
                 </div>

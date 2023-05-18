@@ -26,6 +26,17 @@ const Adjoinordo3 = () => {
       ['', '', '']
     ]);
     setIsClicked(false)
+
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
   
   const [dataAdjOrdo3, setDataAdjOrdo3] = useState(() => {
@@ -36,7 +47,7 @@ const Adjoinordo3 = () => {
   const simpanAdjoinOrdo3 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan Anda telah disimpan !!', {
+    toast.success('Perhitungan disimpan 🙂✨ ', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -102,6 +113,17 @@ const Adjoinordo3 = () => {
 
     setAdjoinOrdo3(nilaiAdjoin)
     setIsClicked(true)
+
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
@@ -114,25 +136,31 @@ const Adjoinordo3 = () => {
   return (
   <>
    <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-   <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
-    <h1>
-      Petunjuk Penggunaan
-    </h1>
-    <li>
-    Masukkan elemen-elemen matriks ordo 3 x 3 ke dalam kolom atau baris yang sesuai dengan kotak yang tersedia
-    </li>
-    <li>
-    Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol 'Tentukan Adjoin' untuk mengaktifkan perhitungan
-    </li>
-    <li>
-    CalMath akan menampilkan hasil dan langkah penyelesaian adjoin ordo 3 x 3 dari matriks yang Anda masukkan di layar kalkulator
-    </li>
-    <li>
-      Hasil operasi hitung adjoin ordo 3 x 3 dapat Anda simpan dan ditampilkan dalam Riwayat
-    </li>
-    <li>
-      Jika Anda ingin menghitung nilai dari adjoin ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
-    </li>
+   <div className='bg-[#FFF8F2] sm:max-h-auto md:min-h-[890px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+   <div className='flex '>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>
+			Petunjuk Penggunaan :
+		</strong></Typography>
+          </div>
+          <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
+            <ol style={{listStyleType:'decimal'}}>         
+              <li>
+              Masukkan elemen-elemen matriks ordo 3 x 3 ke dalam kolom atau baris yang sesuai dengan kotak yang tersedia
+              </li>
+              <li>
+              Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol 'Tentukan Adjoin' untuk mengaktifkan perhitungan
+              </li>
+              <li>
+              CalMath akan menampilkan hasil dan langkah penyelesaian adjoin ordo 3 x 3 dari matriks yang Anda masukkan di layar kalkulator
+              </li>
+              <li>
+                Hasil operasi hitung adjoin ordo 3 x 3 dapat Anda simpan dan ditampilkan dalam Riwayat
+              </li>
+              <li>
+                Jika Anda ingin menghitung nilai dari adjoin ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+              </li>
+            </ol>
+          </Typography>
   </div>
   <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
     <div className='justify-center'>
@@ -195,6 +223,32 @@ const Adjoinordo3 = () => {
       progress={undefined}
       theme="light"
     />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
+    <ToastContainer />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
+    <ToastContainer />
     <div>
       {isClicked && (
     <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
@@ -346,10 +400,13 @@ const Adjoinordo3 = () => {
   
   
   </div>
-  <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-    <h1>
-      Materi Pembahasan
-    </h1>
+  <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+  <div className='justify-center flex mb-[14px]'>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>
+            Materi Pembahasan
+          </strong></Typography>
+          </div>
+          <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
     <p>
       &nbsp; Adjoin adalah matriks kofaktor yang di transposkan (baris jadi kolom, kolom jadi baris)
     </p>
@@ -385,6 +442,7 @@ const Adjoinordo3 = () => {
     <p>
       <Latex>{hasilAdjoin3}</Latex>
     </p>   
+          </Typography>
   </div>
 </div>
 

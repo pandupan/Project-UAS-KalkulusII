@@ -33,7 +33,7 @@ const Determinanordo2 = () => {
   const SimpanDetOrdo2 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan Anda telah disimpan !!', {
+    toast.success('Perhitungan disimpan 🙂✨ ', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -60,9 +60,30 @@ const Determinanordo2 = () => {
   const ResetDetOrdo2 = () => {
     setDeterminanOrdo2(null);
     setMatrixDetOrdo2([['',''],['','']])
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   function menghitungDeterminan() {
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+
     const [a, b] = matrixDetOrdo2[0];
     const [c, d] = matrixDetOrdo2[1];
 
@@ -183,15 +204,41 @@ const Determinanordo2 = () => {
             </form>
           </div>
           <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        progress={undefined}
-        theme="light"
-      />
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+          />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
           <div>
             {determinanOrdo2 !== null && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>

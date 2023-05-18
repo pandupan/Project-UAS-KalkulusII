@@ -35,6 +35,17 @@ const  Kofaktorordo2 = () => {
     setKofaktorOrdo2(hasil)
     setIsClicked(true);
 
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   } 
 
   function handleInputChange(event, row, col){
@@ -54,7 +65,7 @@ const  Kofaktorordo2 = () => {
   const SimpanKofOrdo2 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan Anda telah disimpan !!', {
+    toast.success('Perhitungan disimpan 🙂✨ ', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -83,6 +94,17 @@ const  Kofaktorordo2 = () => {
     setMatrixKofaktorOrdo2([['',''],['','']])
     setTampilKofaktorOrdo2([['',''],['','']])
     setIsClicked(false)
+
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   useEffect(() => {
@@ -94,15 +116,20 @@ const  Kofaktorordo2 = () => {
   }, [kofaktorOrdo2]);
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
-  const rumusKofaktor = ` =$$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
-  const contohKof2 = ` =$$\\begin{bmatrix} -2 & 1 \\\\ 5 & 4 \\end{bmatrix}$$`;
-  const soalKof2 = ` =$$\\begin{bmatrix} 4 & -5 \\\\ -1 & -2 \\end{bmatrix}$$`;
+  const rumusKofaktor = ` $$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
+  const contohKof2 = ` $$\\begin{bmatrix} -2 & 1 \\\\ 5 & 4 \\end{bmatrix}$$`;
+  const soalKof2 = ` $$\\begin{bmatrix} 4 & -5 \\\\ -1 & -2 \\end{bmatrix}$$`;
 
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          <h1>Petunjuk Penggunaan :</h1>
+      <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1280px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+      <div className='flex '>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
+          </div>
+          <br/>
+          <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
+          <ol style={{listStyleType:'decimal'}}>
           <li>
           Masukkan setiap elemen matriks 2 x 2 ke dalam kotak input yang tersedia
           </li>
@@ -121,8 +148,10 @@ const  Kofaktorordo2 = () => {
           <li>
           Jika Anda ingin menghitung nilai dari kofaktor ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
+          </ol>
+          </Typography>
         </div>
-        <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
+        <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg mr-4'>
           <div className='justify-center'>
             <div className='rounded-3xl py-2 max-h-screen bg-[#423232] text-center w-full'>
               <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant='p' sx={{ fontFamily: 'Crimson Text' }}>
@@ -175,15 +204,41 @@ const  Kofaktorordo2 = () => {
             </form>
           </div>
           <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        progress={undefined}
-        theme="light"
-      />
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+          />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
           <div>
             {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
@@ -313,49 +368,50 @@ const  Kofaktorordo2 = () => {
             )}
           </div>
         </div>
-        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-       <h1>
-        Materi Pembahasan
-       </h1>
-       <p>
+        <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+        <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
+        <Typography variant='p' sx={{fontFamily : 'Merriweather'}}>
+
+       <p className='mt-4'>
         &nbsp; Kofaktor adalah nilai yang ditempatkan pada setiap elemen matriks A, yang diperoleh dari perhitungan determinan matriks kecil yang dibentuk dengan menghilangkan baris dan kolom tertentu
        </p>
-       <p>
-       &nbsp; Rumus :
+       <p className='py-2'>
+       <strong>&nbsp; Rumus :</strong>
        </p>
        <li>
-       Cofactor(a) = (+1)^(1+1) * (d) = d 
+       Kofaktor(a) = (+1)^(1+1) * (d) = d 
        </li>
        <li>
-       Cofactor(b) = (-1)^(1+2) * (c) = -c 
+       Kofaktor(b) = (-1)^(1+2) * (c) = -c 
        </li>
        <li>
-       Cofactor(c) = (-1)^(2+1) * (b) = -b
+       Kofaktor(c) = (-1)^(2+1) * (b) = -b
        </li>
        <li>
-       Cofactor(d) = (+1)^(2+2) * (a) = a
+       Kofaktor(d) = (+1)^(2+2) * (a) = a
        </li>
-       <p>
+       <p className='py-2'>
        &nbsp; Perhatikan bahwa pada kofaktor(b) dan kofaktor(c), tanda negatif (-) digunakan karena mereka berada pada baris dan kolom ganjil
        </p>
        <p>
-       &nbsp; Jika digambarkan dengan pola, sebagai berikut : 
+       &nbsp; Jika digambarkan dengan pola, sebagai berikut: 
        </p>
-      <p>
+      <p className='flex justify-center py-2'>
         <Latex>{rumusKofaktor}</Latex>
       </p>
-      <p>
-        Contoh :
+      <p className='py-2'>
+        <strong>Contoh :</strong>
       </p>
-      <p>
+      <p className='flex justify-center py-2'>
       <Latex>{contohKof2}</Latex>
       </p>
-      <p>
-      &nbsp; Maka, kita dapat menghitung kofaktor untuk setiap elemen menggunakan rumus dan bisa langsung disubstitusi kedalam pola tadi. Jadi kofaktor untuk matriks A adalah :
+      <p className='py-2'>
+      &nbsp; Maka, kita dapat menghitung kofaktor untuk setiap elemen menggunakan rumus dan bisa langsung disubstitusi kedalam pola tadi. Jadi kofaktor untuk matriks A adalah:
       </p>
-      <p>
+      <p className='flex justify-center py-2'>
         <Latex>{soalKof2}</Latex>
       </p>
+        </Typography>
       
       </div>
     </div>

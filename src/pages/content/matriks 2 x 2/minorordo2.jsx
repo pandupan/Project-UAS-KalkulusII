@@ -30,7 +30,7 @@ const Minorordo2 = () => {
   const SimpanMinorOrdo2 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan Anda telah disimpan !!', {
+    toast.success('Perhitungan disimpan 🙂✨ ', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -57,9 +57,30 @@ const Minorordo2 = () => {
   const ResetMinorOrdo2 = () => {
     setMinorOrdo2(null);
     setMatrixMinorOrdo2([['', ''], ['', '']]);
+
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
 
   function handleMinorOrdo2() {
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     const [a, b] = matrixMinorOrdo2[0];
     const [c, d] = matrixMinorOrdo2[1];
 
@@ -83,7 +104,7 @@ const Minorordo2 = () => {
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1070px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+      <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1130px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
       <div className='flex '>
           <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
           </div>
@@ -162,15 +183,41 @@ const Minorordo2 = () => {
             </form>
           </div>
           <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        progress={undefined}
-        theme="light"
-      />
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+          />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
           <div>
             {minorOrdo2 !== null && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
@@ -199,7 +246,7 @@ const Minorordo2 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 1 : menentukan M1 
+                    Langkah 1 : menentukan M11
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -214,7 +261,7 @@ const Minorordo2 = () => {
                 <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M2
+                      Langkah 2 : Menentukan M12
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -229,7 +276,7 @@ const Minorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M3
+                      Langkah 2 : Menentukan M21
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -244,7 +291,7 @@ const Minorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M4
+                      Langkah 2 : Menentukan M22
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -264,11 +311,11 @@ const Minorordo2 = () => {
         <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
         <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
         <Typography variant='p' sx={{fontFamily : 'Merriweather'}}>
-        <p>
+        <p className='mt-4'>
           Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom
         </p>
-        <p>
-          Rumus :
+        <p className='py-2'>
+          <strong>Rumus :</strong>
         </p>
         <p>
         det |A| = (a.d) - (b.c)
@@ -276,16 +323,16 @@ const Minorordo2 = () => {
         <p>
         Dalam rumus ini, elemen-elemen matriks digunakan dalam perhitungan minor ordo 2 x 2
         </p>
-        <p>
-          Misalkan :
+        <p className='py-2'>
+          <strong>Misalkan :</strong>
         </p>
         <p>
         <Latex>
          {minorOrdo2x2}
         </Latex>
         </p>
-        <p>
-          Minor ordo 2 x 2 yang terbentuk adalah :
+        <p className='mt-4'>
+          <strong>Minor ordo 2 x 2 yang terbentuk adalah :</strong>
         </p>
         <p>
         <li>
