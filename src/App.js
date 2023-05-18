@@ -57,6 +57,7 @@ function App() {
             { 
               <Sidebar>
                 <Minorordo2 />
+                <Footer />
               </Sidebar>
             }
           />

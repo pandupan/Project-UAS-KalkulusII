@@ -82,33 +82,39 @@ const Minorordo2 = () => {
 
   return (
     <>
-      <div className='flex flex-col
-       items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          <h1>Petunjuk Penggunaan :</h1>
-          <li>
-          Masukkan nilai-nilai elemen matriks 2 x 2 ke dalam kotak yang sesuai
-          </li>
-          <li>
-          Setelah memasukkan semua nilai elemen matriks, lalu klik tombol 'Tentukan Minor' untuk memulai proses perhitungan
-          </li>
-          <li>
-          CalMath akan menjalankan algoritma yang tepat untuk menghitung minor ordo 2 x 2 berdasarkan nilai-nilai yang Anda masukkan
-          </li>
-          <li>
-          Setelah proses perhitungan selesai, hasil minor ordo 2 x 2 akan ditampilkan di layar kalkulator
-          </li>
-          <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan minor ordo 2 x 2
-          </li>
-          <li>
-            Hasil operasi hitung minor ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat
-          </li>
-          <li>
-          Jika Anda ingin menghitung nilai dari minor ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
-          </li>
+      <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
+      <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1070px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+      <div className='flex '>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
+          </div>
+          <br/>
+          <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
+          <ol style={{listStyleType:'decimal'}}>
+            <li>
+              Masukkan nilai-nilai elemen matriks 2 x 2 ke dalam kotak yang sesuai
+            </li>
+            <li>
+              Setelah memasukkan semua nilai elemen matriks, lalu klik tombol 'Tentukan Minor' untuk memulai proses perhitungan
+            </li>
+            <li>
+              CalMath akan menjalankan algoritma yang tepat untuk menghitung minor ordo 2 x 2 berdasarkan nilai-nilai yang Anda masukkan
+            </li>
+            <li>
+              Setelah proses perhitungan selesai, hasil minor ordo 2 x 2 akan ditampilkan di layar kalkulator
+            </li>
+            <li>
+              CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan minor ordo 2 x 2
+            </li>
+            <li>
+              Hasil operasi hitung minor ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat
+            </li>
+            <li>
+              Jika Anda ingin menghitung nilai dari minor ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+            </li>
+          </ol>
+          </Typography>
         </div>
-        <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
+        <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg mr-4'>
           <div className='justify-center'>
             <div className='rounded-3xl py-2 max-h-screen bg-[#423232] text-center w-full'>
               <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant='p' sx={{ fontFamily: 'Crimson Text' }}>
@@ -250,20 +256,16 @@ const Minorordo2 = () => {
                     </Latex>
                   </div>
                   </div>
-                  <div>
-                    {/* {menampilkanPerhitungan()} */}
-                  </div>
                 </div>
               </div>
             )}
           </div>
         </div>
-        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-        <h1>
-          Materi Pembahasan
-        </h1>
+        <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+        <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
+        <Typography variant='p' sx={{fontFamily : 'Merriweather'}}>
         <p>
-        Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom
+          Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom
         </p>
         <p>
           Rumus :
@@ -311,7 +313,7 @@ const Minorordo2 = () => {
         <p>
         Minor M22 terbentuk dengan menghapus baris kedua dan kolom kedua dari matriks A. Minor M22 adalah matriks 1x1 yang terdiri dari elemen a
         </p>
-
+        </Typography>
       </div>
     </div>
     </>

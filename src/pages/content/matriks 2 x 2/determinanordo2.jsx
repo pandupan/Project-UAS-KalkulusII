@@ -104,7 +104,7 @@ const Determinanordo2 = () => {
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-        <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[830px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+        <div className='bg-[#FFF8F2] sm:max-h-auto md:min-h-[890px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <div className='flex '>
           <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
           </div>
