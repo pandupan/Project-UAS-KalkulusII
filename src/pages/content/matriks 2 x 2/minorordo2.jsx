@@ -78,6 +78,8 @@ const Minorordo2 = () => {
   const m21 = `M21 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[2] : 0} \\end{bmatrix}$$`;
   const m22 = `M22 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[3] : 0} \\end{bmatrix}$$`;
 
+  const minorOrdo2x2 = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
+
   return (
     <>
       <div className='flex flex-col
@@ -85,25 +87,25 @@ const Minorordo2 = () => {
       <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <h1>Petunjuk Penggunaan :</h1>
           <li>
-            Masukan angka-angka matriks pada kotak yang tersedia
+          Masukkan nilai-nilai elemen matriks 2 x 2 ke dalam kotak yang sesuai
           </li>
           <li>
-            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+          Setelah memasukkan semua nilai elemen matriks, lalu klik tombol 'Tentukan Minor' untuk memulai proses perhitungan
           </li>
           <li>
-            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+          CalMath akan menjalankan algoritma yang tepat untuk menghitung minor ordo 2 x 2 berdasarkan nilai-nilai yang Anda masukkan
           </li>
           <li>
-            Hasil determinan akan ditampilkan dilayar kalkulator
+          Setelah proses perhitungan selesai, hasil minor ordo 2 x 2 akan ditampilkan di layar kalkulator
           </li>
           <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan minor ordo 2 x 2
           </li>
           <li>
-            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+            Hasil operasi hitung minor ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat
           </li>
           <li>
-            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+          Jika Anda ingin menghitung nilai dari minor ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
@@ -257,7 +259,59 @@ const Minorordo2 = () => {
           </div>
         </div>
         <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-        test (right)
+        <h1>
+          Materi Pembahasan
+        </h1>
+        <p>
+        Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom
+        </p>
+        <p>
+          Rumus :
+        </p>
+        <p>
+        det |A| = (a.d) - (b.c)
+        </p>
+        <p>
+        Dalam rumus ini, elemen-elemen matriks digunakan dalam perhitungan minor ordo 2 x 2
+        </p>
+        <p>
+          Misalkan :
+        </p>
+        <p>
+        <Latex>
+         {minorOrdo2x2}
+        </Latex>
+        </p>
+        <p>
+          Minor ordo 2 x 2 yang terbentuk adalah :
+        </p>
+        <p>
+        <li>
+         Minor M11 :
+        </li>
+        </p>
+        <p>
+        Minor M11 terbentuk dengan menghapus baris pertama dan kolom pertama dari matriks A. Minor M11 adalah matriks 1x1 yang terdiri dari elemen d
+        </p>
+        <li>
+          Minor M12 :
+        </li>
+        <p>
+        Minor M12 terbentuk dengan menghapus baris pertama dan kolom kedua dari matriks A. Minor M12 adalah matriks 1x1 yang terdiri dari elemen c
+        </p>
+        <li>
+          Minor M21 :
+        </li>
+        <p>
+        Minor M21 terbentuk dengan menghapus baris kedua dan kolom pertama dari matriks A. Minor M21 adalah matriks 1x1 yang terdiri dari elemen b
+        </p>
+        <li>
+          Minor M22 :
+        </li>
+        <p>
+        Minor M22 terbentuk dengan menghapus baris kedua dan kolom kedua dari matriks A. Minor M22 adalah matriks 1x1 yang terdiri dari elemen a
+        </p>
+
       </div>
     </div>
     </>

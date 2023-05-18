@@ -100,13 +100,13 @@ const Determinanordo2 = () => {
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <h1>Petunjuk Penggunaan :</h1>
           <li>
             Masukan angka-angka matriks pada kotak yang tersedia
           </li>
           <li>
-            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+            Pastikan Anda menginput angka pada determinan ordo 2 x 2 dengan benar agar hasilnya tepat
           </li>
           <li>
             Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan

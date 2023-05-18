@@ -106,14 +106,33 @@ const Adjoinordo3 = () => {
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
   const rumusKofaktor = ` =$$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
-  
+  const matriksAdj3x3 = ` A=$$\\begin{bmatrix} A11 & A12 & A13\\\\\\ A21 & A22 & A23 \\\\\\ A31 & A32 & A33 \\end{bmatrix} $$`;
+  const kofaktorAdj3 = `A=$$\\begin{bmatrix} C11 & C12 & C13 \\\\\\ C21 & C22 & C23 \\\\\\ C31 & C32 & C33 \\end{bmatrix} $$`;
+  const hasilAdjoin3 = `A=$$\\begin{bmatrix} C11 & C21 & C31 \\\\\\ C12 & C22 & C32 \\\\\\ C13 & C23 & C33 \\end{bmatrix} $$`;
 
 
   return (
   <>
    <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-  <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
-    {/* Placeholder */}
+   <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
+    <h1>
+      Petunjuk Penggunaan
+    </h1>
+    <li>
+    Masukkan elemen-elemen matriks ordo 3 x 3 ke dalam kolom atau baris yang sesuai dengan kotak yang tersedia
+    </li>
+    <li>
+    Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol 'Tentukan Adjoin' untuk mengaktifkan perhitungan
+    </li>
+    <li>
+    CalMath akan menampilkan hasil dan langkah penyelesaian adjoin ordo 3 x 3 dari matriks yang Anda masukkan di layar kalkulator
+    </li>
+    <li>
+      Hasil operasi hitung adjoin ordo 3 x 3 dapat Anda simpan dan ditampilkan dalam Riwayat
+    </li>
+    <li>
+      Jika Anda ingin menghitung nilai dari adjoin ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+    </li>
   </div>
   <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
     <div className='justify-center'>
@@ -328,7 +347,44 @@ const Adjoinordo3 = () => {
   
   </div>
   <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-    {/* Placeholder */}
+    <h1>
+      Materi Pembahasan
+    </h1>
+    <p>
+      &nbsp; Adjoin adalah matriks kofaktor yang di transposkan (baris jadi kolom, kolom jadi baris)
+    </p>
+    <p>
+      &nbsp; Adjoin dari matriks ordo 3 x 3 adalah matriks yang diperoleh dengan mengubah tanda elemen-elemen di luar diagonal utama dan menghasilkan matriks transpose dari kofaktor matriks tersebut
+    </p>
+    <p>
+      &nbsp; Misalnya terdapat matriks ordo 3 x 3 sebagai berikut :
+    </p>
+    <p>
+      <Latex>
+        {matriksAdj3x3}
+      </Latex>
+    </p>
+    <p>
+     &nbsp; Adjoin dari matriks A dinyatakan sebagai adj(A) dapat ditentukan dengan menghitung kofaktor untuk setiap elemen matriks A
+    </p>
+    <p>
+    <Latex>{kofaktorAdj3}</Latex>
+    </p>
+    <p>
+      &nbsp; Kofaktor Cij diperoleh dengan menghapus baris ke-i dan kolom ke-j dari matriks A, dan mengalikan sisa matriks dengan faktor penentu (-1)^(i+j)
+    </p>
+    <p>
+      &nbsp; Faktor penentu ini berguna untuk mengubah tanda kofaktor secara bergantian
+    </p>
+    <p>
+      &nbsp; Maka, matriks adjoin dapat diperoleh dengan mentransposisikan matriks kofaktor
+    </p> 
+    <p>
+      &nbsp; Artinya, tukar elemen-elemen diagonal utama dan elemen-elemen sejajar dengan diagonal utama
+    </p>
+    <p>
+      <Latex>{hasilAdjoin3}</Latex>
+    </p>   
   </div>
 </div>
 

@@ -123,6 +123,8 @@ const Kofaktor3 = () => {
   
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 & M13 \\\\ M21 & M22 & M23 \\\\ M31 & M32 & M33 \\end{bmatrix}$$`;
   const rumusKofaktor = ` =$$\\begin{bmatrix} + & - & + \\\\ - & + & - \\\\ + & - & + \\end{bmatrix}$$`;
+  const polaKofaktor = ` A=$$\\begin{bmatrix} + & - & +\\\\\\ - & + & - \\\\\\ + & - & + \\end{bmatrix} $$`;
+  const polaCofaktor = ` A=$$\\begin{bmatrix} A11 & A12 & A13 \\\\\\ A21 & A22 & A23 \\\\\\ A31 & A32 & A33 \\end{bmatrix} $$`;
 
   return (
     <>
@@ -130,26 +132,25 @@ const Kofaktor3 = () => {
       <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <h1>Petunjuk Penggunaan :</h1>
           <li>
-            Masukan angka-angka matriks pada kotak yang tersedia
+          Masukkan setiap elemen matriks 3 x 3
+           ke dalam kotak input yang tersedia
           </li>
           <li>
-            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+          Setelah mengisi semua nilai elemen matriks, lalu tekan tombol 'Tentukan Kofaktor' untuk mengaktifkan perhitungan
           </li>
           <li>
-            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+          Setelah Anda mengaktifkan perhitungan, CalMath akan menampilkan hasil kofaktor dari matriks yang Anda masukkan
           </li>
           <li>
-            Hasil determinan akan ditampilkan dilayar kalkulator
+          CalMath akan menampilkan  langkah penyelesaian untuk perhitungan kofaktor ordo 3 x 3 di layar kalkulator
           </li>
           <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+          Hasil operasi hitung kofaktor ordo 3 x 3 dapat Anda simpan dan ditampilkan dalam Riwayat
           </li>
           <li>
-            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+          Jika Anda ingin menghitung nilai dari kofaktor ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
-          <li>
-            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
-          </li>
+
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
           <div className='justify-center'>
@@ -343,8 +344,42 @@ const Kofaktor3 = () => {
             )}
           </div>
         </div>
-      <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-        test (right)
+        <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
+        <h1>
+          Materi Pembahasan
+        </h1>
+        <p>
+        &nbsp; Kofaktor suatu elemen matriks adalah determinan matriks yang diperoleh dari matriks yang dihasilkan setelah menghapus baris dan kolom yang mengandung elemen tersebut
+        </p>
+        <p>
+        &nbsp; Kofaktor dinyatakan dengan simbol Cij, diman i sebagai baris dan j sebagai kolom elemen yang bersangkutan
+        </p>
+        <p>
+        &nbsp; Untuk tandanya, menggunakan tanda positif - negatif yang saling bergantian
+        </p>
+        <p>
+        <Latex>
+          {polaKofaktor}
+        </Latex>
+       </p>
+       <p>
+        Misalnya :
+       </p>
+       <Latex>
+        {polaCofaktor}
+       </Latex>
+       <p>
+       &nbsp; langkah-langkah untuk menghitung kofaktor dari elemen Aij sebagai berikut :
+       </p>
+       <li>
+       Tentukan matriks minor Mij dengan menghapus baris ke-i dan kolom ke-j dari matriks A
+       </li>
+       <li>
+       Hitung determinan dari matriks minor Mij. Notasikan dengan det(Mij)
+       </li>
+       <li>
+       Kofaktor Cij dari elemen aij adalah hasil perkalian det(Mij) dengan faktor penentu (-1)^(i+j)
+       </li>
       </div>
     </div>
       </>

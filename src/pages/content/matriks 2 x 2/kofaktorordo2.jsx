@@ -95,6 +95,8 @@ const  Kofaktorordo2 = () => {
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
   const rumusKofaktor = ` =$$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
+  const contohKof2 = ` =$$\\begin{bmatrix} -2 & 1 \\\\ 5 & 4 \\end{bmatrix}$$`;
+  const soalKof2 = ` =$$\\begin{bmatrix} 4 & -5 \\\\ -1 & -2 \\end{bmatrix}$$`;
 
   return (
     <>
@@ -102,25 +104,22 @@ const  Kofaktorordo2 = () => {
       <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <h1>Petunjuk Penggunaan :</h1>
           <li>
-            Masukan angka-angka matriks pada kotak yang tersedia
+          Masukkan setiap elemen matriks 2 x 2 ke dalam kotak input yang tersedia
           </li>
           <li>
-            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+          Setelah mengisi semua nilai elemen matriks, lalu tekan tombol 'Tentukan Kofaktor' untuk mengaktifkan perhitungan
           </li>
           <li>
-            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+          Setelah Anda mengaktifkan perhitungan, CalMath akan menampilkan hasil kofaktor dari matriks yang Anda masukkan
           </li>
           <li>
-            Hasil determinan akan ditampilkan dilayar kalkulator
+          CalMath akan menampilkan  langkah penyelesaian untuk perhitungan kofaktor ordo 2 x 2 di layar kalkulator
           </li>
           <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+          Hasil operasi hitung kofaktor ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat
           </li>
           <li>
-            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
-          </li>
-          <li>
-            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+          Jika Anda ingin menghitung nilai dari kofaktor ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
@@ -314,8 +313,50 @@ const  Kofaktorordo2 = () => {
             )}
           </div>
         </div>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-        test (right)
+        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+       <h1>
+        Materi Pembahasan
+       </h1>
+       <p>
+        &nbsp; Kofaktor adalah nilai yang ditempatkan pada setiap elemen matriks A, yang diperoleh dari perhitungan determinan matriks kecil yang dibentuk dengan menghilangkan baris dan kolom tertentu
+       </p>
+       <p>
+       &nbsp; Rumus :
+       </p>
+       <li>
+       Cofactor(a) = (+1)^(1+1) * (d) = d 
+       </li>
+       <li>
+       Cofactor(b) = (-1)^(1+2) * (c) = -c 
+       </li>
+       <li>
+       Cofactor(c) = (-1)^(2+1) * (b) = -b
+       </li>
+       <li>
+       Cofactor(d) = (+1)^(2+2) * (a) = a
+       </li>
+       <p>
+       &nbsp; Perhatikan bahwa pada kofaktor(b) dan kofaktor(c), tanda negatif (-) digunakan karena mereka berada pada baris dan kolom ganjil
+       </p>
+       <p>
+       &nbsp; Jika digambarkan dengan pola, sebagai berikut : 
+       </p>
+      <p>
+        <Latex>{rumusKofaktor}</Latex>
+      </p>
+      <p>
+        Contoh :
+      </p>
+      <p>
+      <Latex>{contohKof2}</Latex>
+      </p>
+      <p>
+      &nbsp; Maka, kita dapat menghitung kofaktor untuk setiap elemen menggunakan rumus dan bisa langsung disubstitusi kedalam pola tadi. Jadi kofaktor untuk matriks A adalah :
+      </p>
+      <p>
+        <Latex>{soalKof2}</Latex>
+      </p>
+      
       </div>
     </div>
     </>

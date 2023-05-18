@@ -110,11 +110,36 @@ const Determinanordo3 = () => {
   const b3c2a1 = `$$\\begin{bmatrix} ${matrixDetOrdo3[0][2]} & ${matrixDetOrdo3[1][0]} & ${matrixDetOrdo3[2][1]} \\end{bmatrix}$$`;
   const c3a2b1 = `$$\\begin{bmatrix} ${matrixDetOrdo3[0][2]} & ${matrixDetOrdo3[1][1]} & ${matrixDetOrdo3[2][0]} \\end{bmatrix}$$`;
 
+  const rumusUmum = ` A=$$\\begin{bmatrix} a & b & c\\\\\\ d & e & f \\\\\\ g & h & i \\end{bmatrix} $$`;
+  const rumusUmumdet = `$$\\begin{bmatrix} a & b & c\\\\\\ d & e & f \\\\\\ g & h & i \\end{bmatrix} $$ $$\\begin{array}{cc}a & b \\\\\\  d & e \\\\\\  g & h \\end{array}$$`;
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-  <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
-    test (left)
+      <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0 sm:mr-4'>
+    <h1>
+      Petunjuk Penggunaan 
+    </h1>
+    <li>
+    Masukan angka-angka matriks pada kotak yang tersedia
+    </li>
+    <li>
+      Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+    </li>
+    <li>
+      Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+    </li>
+    <li>
+      Hasil determinan akan ditampilkan dilayar kalkulator
+    </li>
+    <li>
+      CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+    </li>
+    <li>
+      Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+    </li>
+    <li>
+      Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+    </li>
   </div>
   <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
     <div className='justify-center'>
@@ -220,8 +245,33 @@ const Determinanordo3 = () => {
       </div>
     
   </div>
-    <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-      test (right)
+  <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
+          <h1>
+            Materi Pembahasan
+          </h1>
+          <p>
+            &nbsp; Determinan adalah nilai yang dapat dihitung dari unsur-unsur suatu matriks persegi
+          </p>
+         <p>
+          &nbsp; Determinan dari matriks A dinotasikan dengan det (A) atau |A|
+         </p>
+        <h2>
+         &nbsp; Matriks Ordo 3 x 3
+         </h2>
+         <p>
+         &nbsp; Rumus Umum :
+          Jika Matriks <Latex>{rumusUmum}</Latex>
+          <p>maka </p>
+          <p>
+            |A|=<Latex>{rumusUmumdet}</Latex>
+          </p>
+          <p> |A|=(aei)+(bfg)+(cdh)-(ceg)-(afh)-(bdi)</p>
+         </p>
+         <p>
+         &nbsp; Ketentuan Determinan Ordo 3 x 3 :
+         </p>
+         <p>1. Jika nilai determinan suatu matriks ordo 3x3 adalah nol, maka matriks tersebut disebut matriks singular atau matriks tidak memiliki invers.</p>
+         <p>2. Jika matriks A dan B adalah matriks ordo 3x3, maka determinan dari hasil perkalian AB sama dengan hasil perkalian determinan dari matriks A dan B, yaitu det(AB) = det(A) x det(B).</p>
     </div>
 </div>
 

@@ -114,13 +114,34 @@ const Adjoinordo2 = () => {
   
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
   const rumusKofaktor = ` =$$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
+  const matriksAdj2 = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
+  const matriksKofaktor = `A=$$\\begin{bmatrix} d & -c \\\\ -b & a \\end{bmatrix}$$`;
+  const matriksAdjoin  = ` =$$\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}$$`;
+
   
 
   return (
     <>
  <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          test (right)
+ <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+          <h1>
+            Petunjuk Penggunaan
+          </h1>
+          <li>
+          Masukkan elemen-elemen matriks ordo 2 x 2 ke dalam kolom atau baris yang sesuai dengan kotak yang tersedia
+          </li>
+          <li>
+          Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol 'Tentukan Adjoin' untuk mengaktifkan perhitungan
+          </li>
+          <li>
+          CalMath akan menampilkan hasil dan langkah penyelesaian adjoin ordo 2 x 2 dari matriks yang Anda masukkan di layar kalkulator
+          </li>
+          <li>
+          Hasil operasi hitung adjoin ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat
+          </li>
+          <li>
+          Jika Anda ingin menghitung nilai dari adjoin ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+          </li>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
           <div className='justify-center'>
@@ -177,15 +198,15 @@ const Adjoinordo2 = () => {
             </form>
           </div>
           <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        progress={undefined}
-        theme="light"
-      />
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+            draggable
+            progress={undefined}
+            theme="light"
+           />
           <div>
             { isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
@@ -334,8 +355,37 @@ const Adjoinordo2 = () => {
           </div>
 
         </div>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-        test (right)
+        <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+        <h1>
+          Materi Pembahasan
+        </h1>
+        <p>
+        &nbsp; Adjoin adalah matriks kofaktor yang di transposkan (baris jadi kolom, kolom jadi baris)
+        </p>
+        <p>
+        &nbsp; Adjoin matriks ordo 2 x 2 adalah matriks yang diperoleh dengan menukar elemen-elemen pada diagonal utama (elemen diagonal dari kiri atas ke kanan bawah) dan mengubah tanda elemen-elemen di luar diagonal
+        </p>
+        <p>
+        &nbsp; Misalkan terdapat matriks <Latex>{matriksAdj2}</Latex>
+        </p>
+        <p>
+        &nbsp; Langkah pertama dalam menghitung adjoin ordo 2 x 2 adalah menghitung matriks kofaktor
+        </p>
+        <p>
+          <Latex>{matriksKofaktor}</Latex>
+        </p>
+        <p>
+        &nbsp; Langkah berikutnya adalah mentranspos matriks kofaktor. Transpos matriks adalah operasi yang menukar baris menjadi kolom dan kolom menjadi baris.
+        </p>
+        <p>
+        &nbsp; Matriks adjoin dari matriks A adalah:
+        </p>
+        <p>
+          <Latex>{matriksAdjoin}</Latex>
+        </p>
+        <p>
+          &nbsp; Jadi, jika terdapat matriks A dengan ordo 2x2, matriks adjoin dari A adalah matriks dengan elemen-elemen yang ditukar antara elemen diagonal utama (a dan d) dan elemen diagonal sekunder (-b dan -c).
+        </p>
       </div>
     </div>
     </>

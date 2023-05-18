@@ -97,6 +97,9 @@ const Minorordo3 = () => {
     const m32 = `M32 = $$\\begin{bmatrix} ${minorOrdo3 ? minorOrdo3[7] : 0} \\end{bmatrix}$$`;
     const m33 = `M33 = $$\\begin{bmatrix} ${minorOrdo3 ? minorOrdo3[8] : 0} \\end{bmatrix}$$`;
 
+    const rumusMinor3 = ` A=$$\\begin{bmatrix} a & b & c\\\\\\ d & e & f \\\\\\ g & h & i \\end{bmatrix} $$`;
+    const hasilMinor3 = ` B=$$\\begin{bmatrix} e & f \\\\ h & i \\end{bmatrix}$$`;
+
   return (
     <div>
       <>
@@ -104,25 +107,25 @@ const Minorordo3 = () => {
       <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <h1>Petunjuk Penggunaan :</h1>
           <li>
-            Masukan angka-angka matriks pada kotak yang tersedia
+          Masukkan nilai-nilai elemen matriks 3 x 3 Anda ke dalam kotak yang sesuai
           </li>
           <li>
-            Pastikan Anda menginput angka pada determinan ordo 3 x 3 dengan benar agar hasilnya tepat
+          Setelah memasukkan semua nilai elemen matriks, lalu klik tombol 'Tentukan Minor' untuk memulai proses perhitungan
           </li>
           <li>
-            Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
+          CalMath akan menjalankan algoritma yang tepat untuk menghitung minor ordo 3 x 3 berdasarkan nilai-nilai yang Anda masukkan
           </li>
           <li>
-            Hasil determinan akan ditampilkan dilayar kalkulator
+          Setelah proses perhitungan selesai, hasil minor ordo 3 x 3 akan ditampilkan di layar kalkulator
           </li>
           <li>
-            CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
+          CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan minor ordo 3 x 3
           </li>
           <li>
-            Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
+          Hasil operasi hitung minor ordo 3 x 3 dapat Anda simpan dan ditampilkan dalam Riwayat
           </li>
           <li>
-            Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
+          Jika Anda ingin menghitung nilai dari minor ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
@@ -379,18 +382,40 @@ const Minorordo3 = () => {
             )}
           </div>
         </div>
-      <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
+        <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
         <h1>
           Materi Pembahasan
         </h1>
         <p>
-          Minor ordo 3x3 dihasilkan dengan menghilangkan baris dan kolom yang terkait dengan elemen utama yang sedang dihitung.
+         &nbsp; Minor ordo 3x3 dihasilkan dengan menghilangkan baris dan kolom yang terkait dengan elemen utama yang sedang dihitung
         </p>
         <p>
-          Misalnya, untuk menghitung minor M_ij, kita menghilangkan baris ke-i dan kolom ke-j dari matriks utama
+         &nbsp; Misalnya, untuk menghitung minor M_ij, baris ke-i dan kolom ke-j dihilangkan dari matriks utama
         </p>
         <p>
-          
+        &nbsp; Maka dapat dihitung determinan dari matriks minor 2 x 2 tersebut
+        </p>
+        <p>
+        &nbsp; Determinan tersebut merupakan minor ordo dari elemen M_ij
+        </p>
+        <p>Contoh :</p>
+        <p>
+          <Latex>{rumusMinor3}</Latex>
+        </p>
+        <p>
+        &nbsp; Untuk mencari minor ordo dari elemen A(1,1), hilangkan baris pertama dan kolom pertama, sehingga membentuk matriks minor 2 x 2 B : 
+        </p>
+        <p>
+          <Latex>{hasilMinor3}</Latex>
+        </p>
+        <p>
+         &nbsp; Maka dapat dihitung determinan dari matriks tersebut dengan rumus, B = (e.i)-(f.h)
+        </p>
+        <p>
+         &nbsp; Hasil determinan tersebut merupakan minor ordo dari elemen A(1,1)
+        </p>
+        <p>
+        &nbsp; Langkah-langkah ini dapat diulangi untuk mencari minor ordo dari elemen-elemen lain dalam matriks A
         </p>
       </div>
     </div>
