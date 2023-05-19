@@ -234,7 +234,7 @@ export default function Sidebar(props) {
                   icon =  <History/>
                   break;
                 case 1:
-                  onClickAction = (e) => {
+                  OnClickAction = (e) => {
                     e.preventDefault();
                     localStorage.clear("DetOrdo2");
                     localStorage.clear("MinorOrdo2");
@@ -256,7 +256,7 @@ export default function Sidebar(props) {
               }
               return(
               <ListItem key={text} disablePadding>
-                <ListItemButton component={Link} to={route} onClick={onClickAction}>
+                <ListItemButton component={Link} to={route} onClick={OnClickAction}>
                   <ListItemIcon>
                     {icon}
                   </ListItemIcon>
