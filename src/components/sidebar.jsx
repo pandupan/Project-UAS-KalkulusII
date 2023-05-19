@@ -243,9 +243,9 @@ export default function Sidebar(props) {
                     localStorage.clear("MinorOrdo3");
                     localStorage.clear("KofOrdo3");
                     localStorage.clear("AdjOrdo3");
-                    window.location.reload();
                   }
                   icon =  <DeleteForeverOutlinedIcon/>
+                  route = '/dashboard'
                   break;
                 case 2:
                   route = '/'
