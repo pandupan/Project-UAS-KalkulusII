@@ -256,7 +256,7 @@ export default function Sidebar(props) {
               }
               return(
               <ListItem key={text} disablePadding>
-                <ListItemButton component={Link} to={route} onClick={OnClickAction}>
+                <ListItemButton component={Link} to={route} onClick={onClickAction}>
                   <ListItemIcon>
                     {icon}
                   </ListItemIcon>
