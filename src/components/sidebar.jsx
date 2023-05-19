@@ -234,8 +234,7 @@ export default function Sidebar(props) {
                   icon =  <History/>
                   break;
                 case 1:
-                  OnClickAction = (e) => {
-                    e.preventDefault();
+                  OnClickAction = () => {
                     localStorage.clear("DetOrdo2");
                     localStorage.clear("MinorOrdo2");
                     localStorage.clear("KofOrdo2");
@@ -246,6 +245,7 @@ export default function Sidebar(props) {
                     localStorage.clear("AdjOrdo3");
                   }
                   icon =  <DeleteForeverOutlinedIcon/>
+                  route = '/dashboard'
                   break;
                 case 2:
                   route = '/'
