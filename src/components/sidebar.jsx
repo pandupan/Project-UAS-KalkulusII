@@ -234,7 +234,8 @@ export default function Sidebar(props) {
                   icon =  <History/>
                   break;
                 case 1:
-                  OnClickAction = () => {
+                  OnClickAction = (e) => {
+                    e.preventDefault()
                     localStorage.clear("DetOrdo2");
                     localStorage.clear("MinorOrdo2");
                     localStorage.clear("KofOrdo2");
