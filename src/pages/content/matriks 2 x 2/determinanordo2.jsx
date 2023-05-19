@@ -119,7 +119,7 @@ const Determinanordo2 = () => {
   const a2b1 = `$$\\begin{bmatrix} ${matrixDetOrdo2[0][1]} & ${matrixDetOrdo2[1][0]} \\end{bmatrix}$$`;
 
   const rumusUmum = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
-  const contohRumus = '  A=$$\\begin{bmatrix} 1 & -2 \\\\ 3 & 4 \\end{bmatrix}$$';
+  const contohRumus = '  $$\\begin{bmatrix} 1 & -2 \\\\ 3 & 4 \\end{bmatrix}$$';
   const inversOrdo2x2 = '  A=$$\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}$$';
   
   return (

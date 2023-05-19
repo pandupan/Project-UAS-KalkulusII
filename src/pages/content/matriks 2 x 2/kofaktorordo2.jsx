@@ -258,7 +258,7 @@ const  Kofaktorordo2 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 0 : mengambarkan Matrix 
+                    Langkah 1 : mengambarkan Matrix 
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -272,7 +272,7 @@ const  Kofaktorordo2 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 1 : menentukan M1 
+                    Langkah 2 : menentukan M11 
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -288,7 +288,7 @@ const  Kofaktorordo2 = () => {
                 <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M2
+                      Langkah 3 : Menentukan M12
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -304,7 +304,7 @@ const  Kofaktorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 3 : Menentukan M3
+                      Langkah 4 : Menentukan M21
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -320,7 +320,7 @@ const  Kofaktorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 4 : Menentukan M4
+                      Langkah 5 : Menentukan M22
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -336,7 +336,7 @@ const  Kofaktorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 5 : Mengalikan hasil minor dengan pola kofaktor
+                      Langkah 6 : Mengalikan hasil minor dengan pola kofaktor
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -353,7 +353,7 @@ const  Kofaktorordo2 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 6 : Hasil Kofaktor yang didapatkan adalah
+                      Langkah 7 : Hasil Kofaktor yang didapatkan adalah
                     </Typography> 
                   </div>
                   <div className='mb-6'>

@@ -105,8 +105,8 @@ const Riwayat = () => {
             <figure>
               <div className='mt-4'>
             <Latex>
-              {`$$\\begin{bmatrix} ${data.MatrixMinorOrdo2.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
-            </Latex> 
+                  {`$$\\begin{bmatrix} ${data.MatrixMinorOrdo2[0][0]} & ${data.MatrixMinorOrdo2[0][1]} \\\\ ${data.MatrixMinorOrdo2[1][0]} & ${data.MatrixMinorOrdo2[1][1]} \\end{bmatrix}$$`}
+                </Latex>
               </div>
             </figure>
             <div className="card-body static">
@@ -117,9 +117,11 @@ const Riwayat = () => {
                     <p>
                       M1, M2, M3, M4 =
                     </p>
-                  <Latex>
-                   {`$$\\begin{bmatrix}${data.MinorOrdo2.map(row => `[${row}]`).join(' ')} \\end{bmatrix}$$`}
-                  </Latex>
+                    <Latex>
+                      {data.MinorOrdo2 !== null ? (
+                        `$$\\begin{bmatrix} ${data.MinorOrdo2[0]} & ${data.MinorOrdo2[1]} \\\\ ${data.MinorOrdo2[2]} & ${data.MinorOrdo2[3]} \\end{bmatrix}$$`
+                      ) : "0"}
+                    </Latex>
                   </p>
                 </div>
                 <div className='absolute top-2 right-[-15px] pt-3 rounded-lg bg-[#E09132] h-[40px] w-[55px]'>

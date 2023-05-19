@@ -141,7 +141,7 @@ const Kofaktor3 = () => {
   }, [kofaktorOrdo3]);
   
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 & M13 \\\\ M21 & M22 & M23 \\\\ M31 & M32 & M33 \\end{bmatrix}$$`;
-  const rumusKofaktor = ` =$$\\begin{bmatrix} + & - & + \\\\ - & + & - \\\\ + & - & + \\end{bmatrix}$$`;
+  const rumusKofaktor = ` $$\\begin{bmatrix} + & - & + \\\\ - & + & - \\\\ + & - & + \\end{bmatrix}$$`;
   const polaKofaktor = ` A=$$\\begin{bmatrix} + & - & +\\\\\\ - & + & - \\\\\\ + & - & + \\end{bmatrix} $$`;
   const polaCofaktor = ` A=$$\\begin{bmatrix} A11 & A12 & A13 \\\\\\ A21 & A22 & A23 \\\\\\ A31 & A32 & A33 \\end{bmatrix} $$`;
 
@@ -222,7 +222,7 @@ const Kofaktor3 = () => {
         }}
         className="px-4 py-2 bg-[#E09132] text-white rounded-full"
         >
-          Tentukan Kofaktor
+          Tentukan Kofaktor →
         </button>
             <button onClick={ResetKofOrdo3} className="px-4 py-2 bg-red-600 text-white rounded-full">
               Reset  →
@@ -288,7 +288,7 @@ const Kofaktor3 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 0 : mengambarkan Matrix 
+                    Langkah 1 : mengambarkan Matrix 
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -302,7 +302,7 @@ const Kofaktor3 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 1 : menentukan M1 
+                    Langkah 2 : menentukan M11
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -318,7 +318,7 @@ const Kofaktor3 = () => {
                 <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M2
+                      Langkah 3 : Menentukan M12
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -334,7 +334,7 @@ const Kofaktor3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 3 : Menentukan M3
+                      Langkah 4 : Menentukan M13
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -342,7 +342,7 @@ const Kofaktor3 = () => {
                       {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
                     </Latex>
                     <Latex>
-                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[2]*-1 : 0} \\end{bmatrix}$$`}
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[2] : 0} \\end{bmatrix}$$`}
                     </Latex>
                   </div>
                   </div>
@@ -350,7 +350,7 @@ const Kofaktor3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 4 : Menentukan M4
+                      Langkah 5 : Menentukan M21
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -358,7 +358,7 @@ const Kofaktor3 = () => {
                       {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
                     </Latex>
                     <Latex>
-                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[3] : 0} \\end{bmatrix}$$`}
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[3]*-1 : 0} \\end{bmatrix}$$`}
                     </Latex>
                   </div>
                   </div>
@@ -366,14 +366,94 @@ const Kofaktor3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 5 : Mengalikan hasil minor dengan pola kofaktor
+                      Langkah 6 : Menentukan M22
                     </Typography> 
                   </div>
                   <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[4] : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 7 : Menentukan M23
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[5]*-1 : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 7 : Menentukan M31
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[6] : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 8 : Menentukan M32
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[7]*-1 : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 9 : Menentukan M33
+                    </Typography> 
+                  </div>
+                  <div className='mb-6'>
+                    <Latex>
+                      {`$$\\begin{bmatrix} ${matrixKofaktorOrdo3.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                    </Latex>
+                    <Latex>
+                      {`= $$\\begin{bmatrix} ${kofaktorOrdo3 ? kofaktorOrdo3[8] : 0} \\end{bmatrix}$$`}
+                    </Latex>
+                  </div>
+                  </div>
+
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-auto flex flex-col flex-wrap justify-center p-4 items-center shadow-lg rounded-lg '>
+                  <div className='mb-[32px]'>
+                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                      Langkah 10 : Mengalikan hasil minor dengan pola kofaktor
+                    </Typography> 
+                  </div>
+                  <div className='mb-6 flex flex-wrap justify-center items-center gap-3'>
                     <Latex>
                       {hasilMinor}
                     </Latex>
-                  <Latex>
+                    <Latex>
                       {rumusKofaktor}
                     </Latex>
                   
@@ -383,7 +463,7 @@ const Kofaktor3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 6 : Hasil Kofaktor yang didapatkan adalah
+                      Langkah 11 : Hasil Kofaktor yang didapatkan adalah
                     </Typography> 
                   </div>
                   <div className='mb-6'>

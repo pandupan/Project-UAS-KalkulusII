@@ -21,7 +21,7 @@ export const Dashboard = () => {
                     <figure><img src="https://i.ibb.co/3B1Fq0W/Teacher-amico.png" alt="Math" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Minor Ordo 2</h2>
-                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Determinan Ordo 2</p>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Minor Ordo 2</p>
                         <div className="card-actions  justify-end">
                         <Link className="btn btn-warning bg-[#E09132]" to='/minor2'>
                         <Link className='text-white' to='/minor2'>Click Here  →</Link>
@@ -71,7 +71,7 @@ export const Dashboard = () => {
                     <figure><img src="https://i.ibb.co/3B1Fq0W/Teacher-amico.png" alt="Math" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Minor Ordo 3</h2>
-                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Adjoin Ordo 3</p>
+                        <p className='mb-5'>Menampilkan Kalkulator Untuk Menyelesaikan Minor Ordo 3</p>
                         <div className="card-actions  justify-end">
                         <Link className="btn btn-warning bg-[#E09132]" to='/minor3'>
                         <Link className='text-white' to='/minor3'>Click Here  →</Link>

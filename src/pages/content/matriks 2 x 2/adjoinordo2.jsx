@@ -301,7 +301,7 @@ const Adjoinordo2 = () => {
                         sx={{ fontFamily: "Merriweather" }}
                         className="text-black"
                       >
-                        Langkah 0 : mengambarkan Matrix
+                        Langkah 1 : mengambarkan Matrix
                       </Typography>
                     </div>
                     <div className="mb-6">
@@ -320,7 +320,7 @@ const Adjoinordo2 = () => {
                         sx={{ fontFamily: "Merriweather" }}
                         className="text-black"
                       >
-                        Langkah 1 : menentukan M1
+                        Langkah 2 : menentukan M11
                       </Typography>
                     </div>
                     <div className="mb-6">
@@ -344,7 +344,7 @@ const Adjoinordo2 = () => {
                         sx={{ fontFamily: "Merriweather" }}
                         className="text-black"
                       >
-                        Langkah 2 : menentukan M2
+                        Langkah 2 : menentukan M12
                       </Typography>
                     </div>
                     <div className="mb-6">
@@ -368,7 +368,7 @@ const Adjoinordo2 = () => {
                         sx={{ fontFamily: "Merriweather" }}
                         className="text-black"
                       >
-                        Langkah 3 : menentukan M3
+                        Langkah 3 : menentukan M21
                       </Typography>
                     </div>
                     <div className="mb-6">
@@ -392,7 +392,7 @@ const Adjoinordo2 = () => {
                         sx={{ fontFamily: "Merriweather" }}
                         className="text-black"
                       >
-                        Langkah 4 : menentukan M4
+                        Langkah 4 : menentukan M22
                       </Typography>
                     </div>
                     <div className="mb-6">

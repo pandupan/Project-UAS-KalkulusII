@@ -95,7 +95,6 @@ const Minorordo3 = () => {
     const hasil = [m11,m12,m13,m21,m22,m23,m31,m32,m33]
 
     setMinorOrdo3(hasil)
-    
     toast('🚀 Perhitungan Berhasil !!', {
       position: "top-right",
       autoClose: 5000,
@@ -125,8 +124,14 @@ const Minorordo3 = () => {
     <div>
       <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto h-[905px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-          <h1>Petunjuk Penggunaan :</h1>
+      <div className='bg-[#FFF8F2] sm:max-h-auto md:min-h-[890px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+      <div className='justify-center flex '>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>
+			      Petunjuk Penggunaan :
+		      </strong></Typography>
+          </div>
+          <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
+            <ol style={{listStyleType:'decimal'}}>    
           <li>
           Masukkan nilai-nilai elemen matriks 3 x 3 Anda ke dalam kotak yang sesuai
           </li>
@@ -148,6 +153,8 @@ const Minorordo3 = () => {
           <li>
           Jika Anda ingin menghitung nilai dari minor ordo 3 x 3 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
           </li>
+            </ol>
+          </Typography>
         </div>
         <div className='w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg'>
           <div className='justify-center'>
@@ -279,7 +286,7 @@ const Minorordo3 = () => {
                   <div className='mb-4'>
 
                   <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 1 : menentukan M1 
+                    Langkah 1 : menentukan M11 
                   </Typography>
                   </div>
                   <div className='mb-6'>
@@ -295,7 +302,7 @@ const Minorordo3 = () => {
                 <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : Menentukan M2
+                      Langkah 2 : Menentukan M12
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -311,7 +318,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 3 : Menentukan M3
+                      Langkah 3 : Menentukan M13
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -327,7 +334,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 4 : Menentukan M4
+                      Langkah 4 : Menentukan M21
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -343,7 +350,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 5 : Menentukan M5
+                      Langkah 5 : Menentukan M22
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -359,7 +366,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 6 : Menentukan M6
+                      Langkah 6 : Menentukan M23
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -375,7 +382,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 7 : Menentukan M7
+                      Langkah 7 : Menentukan M31
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -391,7 +398,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 8 : Menentukan M8
+                      Langkah 8 : Menentukan M32
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -407,7 +414,7 @@ const Minorordo3 = () => {
                   <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
                   <div className='mb-[32px]'>
                     <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 9 : Menentukan M9
+                      Langkah 9 : Menentukan M33
                     </Typography> 
                   </div>
                   <div className='mb-6'>
@@ -419,15 +426,23 @@ const Minorordo3 = () => {
                     </Latex>
                   </div>
                   </div>
+
+
+                  <div>
+                    {/* {menampilkanPerhitungan()} */}
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </div>
-        <div className='bg-[#FFF8F2] h-[900px] w-[200px] shadow-xl mt-4 sm:mt-0'>
-        <h1>
-          Materi Pembahasan
-        </h1>
+        <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:ml-4'>
+        <div className='justify-center flex mb-[14px]'>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>
+            Materi Pembahasan
+          </strong></Typography>
+          </div>
+          <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
         <p>
          &nbsp; Minor ordo 3x3 dihasilkan dengan menghilangkan baris dan kolom yang terkait dengan elemen utama yang sedang dihitung
         </p>
@@ -459,6 +474,7 @@ const Minorordo3 = () => {
         <p>
         &nbsp; Langkah-langkah ini dapat diulangi untuk mencari minor ordo dari elemen-elemen lain dalam matriks A
         </p>
+          </Typography>
       </div>
     </div>
       </>
