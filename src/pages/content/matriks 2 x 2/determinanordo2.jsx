@@ -12,7 +12,14 @@ const Determinanordo2 = () => {
     ['', '']
   ]);
   
+  //Variabel tampung hasil
   const [determinanOrdo2, setDeterminanOrdo2] = useState(null);
+
+  //Validasi sudah dihitung
+  const [isClicked, setIsClicked] = useState(false);
+
+  //Validasi sudah diinput 
+  const [isMatrixChanged, setIsMatrixChanged] = useState(false);
   
   // Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataDetOrdo2, setDataDetOrdo2] = useState(() => {
@@ -27,52 +34,34 @@ const Determinanordo2 = () => {
     newMatrix[row][col] = isNaN(value) ? 0 : value;
 
     setMatrixDetOrdo2(newMatrix);
+
+    setIsMatrixChanged(true)
   }
 
   // Mengatur Simpan, Hitung, Hasil
-  const SimpanDetOrdo2 = (e) => {
-    e.preventDefault();
-
-    toast.success('Perhitungan disimpan 🙂✨ ', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-    let dataDetOrdo2Obj = {
-      ID: 'Determinan Ordo 2',
-      MatrixDetOrdo2: matrixDetOrdo2,
-      DeterminanOrdo2: determinanOrdo2
-    };
-  
-    setDataDetOrdo2((prevDataDetOrdo2) => [...prevDataDetOrdo2, dataDetOrdo2Obj]);
-  };
-  
-  useEffect(() => {
-    localStorage.setItem('DetOrdo2', JSON.stringify(dataDetOrdo2));
-  }, [dataDetOrdo2]);
-
-  const ResetDetOrdo2 = () => {
-    setDeterminanOrdo2(null);
-    setMatrixDetOrdo2([['',''],['','']])
-    toast.error('Perhitungan Telah Dihapus ❌', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-  }
-
   function menghitungDeterminan() {
+    if (!isMatrixChanged) {
+      toast('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
+  
+    const [a, b] = matrixDetOrdo2[0];
+    const [c, d] = matrixDetOrdo2[1];
+  
+    const hasilDeterminan = a * d - b * c;
+  
+    setDeterminanOrdo2(hasilDeterminan);
+    setIsClicked(true)
+  
     toast('🚀 Perhitungan Berhasil !!', {
       position: "top-right",
       autoClose: 5000,
@@ -82,15 +71,103 @@ const Determinanordo2 = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
-
-    const [a, b] = matrixDetOrdo2[0];
-    const [c, d] = matrixDetOrdo2[1];
-
-    const hasilDeterminan = a * d - b * c;
-
-    setDeterminanOrdo2(hasilDeterminan);
+    });
   }
+
+  const SimpanDetOrdo2 = (e) => {
+    e.preventDefault();
+  
+    if (determinanOrdo2 !== null) {
+      const isDataExist = dataDetOrdo2.some((data) =>
+        JSON.stringify(data.MatrixDetOrdo2) === JSON.stringify(matrixDetOrdo2)
+      );
+  
+      if (isDataExist) {
+        toast.warning('Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.success('Perhitungan disimpan 💖✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+        let dataDetOrdo2Obj = {
+          ID: 'Determinan Ordo 2',
+          MatrixDetOrdo2: matrixDetOrdo2,
+          DeterminanOrdo2: determinanOrdo2
+        };
+  
+        setDataDetOrdo2((prevDataDetOrdo2) => [...prevDataDetOrdo2, dataDetOrdo2Obj]);
+      }
+    } else {
+      toast.warning('Silakan Lakukan perhitung terlebih dahulu sebelum menyimpan ⛔', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem('DetOrdo2', JSON.stringify(dataDetOrdo2));
+  }, [dataDetOrdo2]);
+
+  const ResetDetOrdo2 = () => {
+    // Cek apakah data matriks sudah kosong
+    if (matrixDetOrdo2.length === 0 ||
+        matrixDetOrdo2[0].every(val => val === '') || 
+        matrixDetOrdo2[1].every(val => val === '') 
+       ) {
+      toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data matriks kosong
+    }
+  
+    // Lakukan reset
+    setDeterminanOrdo2(null);
+    setMatrixDetOrdo2([['', ''], ['', '']]);
+    setIsClicked(false);
+    setIsMatrixChanged(false);
+    
+    toast.error('Perhitungan Telah Dihapus ❌', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+  
 
   //Menampilkan Perhitungan
   const menampilkanPerhitungan = () => {
@@ -114,12 +191,11 @@ const Determinanordo2 = () => {
     );
   };
 
-  //Menampilkan Matrix Dari Inputan
+  //Menampilkan Matrix dengan Latex
   const a1b2 = `$$\\begin{bmatrix} ${matrixDetOrdo2[0][0]} & ${matrixDetOrdo2[1][1]} \\end{bmatrix}$$`;
   const a2b1 = `$$\\begin{bmatrix} ${matrixDetOrdo2[0][1]} & ${matrixDetOrdo2[1][0]} \\end{bmatrix}$$`;
-
   const rumusUmum = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
-  const contohRumus = '  $$\\begin{bmatrix} 1 & -2 \\\\ 3 & 4 \\end{bmatrix}$$';
+  const contohRumus = '  A=$$\\begin{bmatrix} 1 & -2 \\\\ 3 & 4 \\end{bmatrix}$$';
   const inversOrdo2x2 = '  A=$$\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}$$';
   
   return (
@@ -127,32 +203,18 @@ const Determinanordo2 = () => {
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
         <div className='bg-[#FFF8F2] sm:max-h-auto md:min-h-[890px] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <div className='flex '>
-          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
+            <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
           </div>
           <br/>
           <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
             <ol style={{listStyleType:'decimal'}}>
-              <li>
-                Masukan angka-angka matriks pada kotak yang tersedia
-              </li>
-              <li>
-                Pastikan Anda menginput angka pada determinan ordo 2 x 2 dengan benar agar hasilnya tepat
-              </li>
-              <li>
-                Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan
-              </li>
-              <li>
-                Hasil determinan akan ditampilkan dilayar kalkulator
-              </li>
-              <li>
-                CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan
-              </li>
-              <li>
-                Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat
-              </li>
-              <li>
-                Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya
-              </li>
+              <li>Masukan angka-angka matriks pada kotak yang tersedia</li>
+              <li>Pastikan Anda menginput angka pada determinan ordo 2 x 2 dengan benar agar hasilnya tepat</li>
+              <li>Klik tombol "Hitung" untuk mendapatkan hasil determinan dari matriks yang Anda Inputkan</li>
+              <li>Hasil determinan akan ditampilkan dilayar kalkulator</li>
+              <li>CalMath akan menampilkan langkah penyelesaian untuk hasil perhitungan determinan</li>
+              <li>Hasil operasi hitung determinan dapat Anda simpan dan ditampilkan dalam Riwayat</li>
+              <li>Jika Anda ingin menghitung determinan matriks lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya</li>
             </ol>
           </Typography>
         </div>
@@ -240,44 +302,41 @@ const Determinanordo2 = () => {
             />
           <ToastContainer />
           <div>
-            {determinanOrdo2 !== null && (
+            {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg'>
-                <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                  Hasil dari determinan yang anda cari adalah: <strong>{determinanOrdo2}</strong>
-                </Typography>
+                  <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                    Hasil dari determinan yang anda cari adalah: <strong>{determinanOrdo2}</strong>
+                  </Typography>
                 </div>
                 <div className='flex flex-wrap items-center gap-4 justify-center mt-5'>
-
-                <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
-                  <div className='mb-4'>
-
-                  <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                    Langkah 1 : menggambarkan matrix 
-                  </Typography>
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                    <div className='mb-4'>
+                      <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                        Langkah 1 : menggambarkan matrix 
+                      </Typography>
+                    </div>
+                    <div className='mb-6'>
+                      <Latex>
+                        {`$$\\begin{bmatrix} ${matrixDetOrdo2.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
+                      </Latex>
+                    </div>
                   </div>
-                  <div className='mb-6'>
-                    <Latex>
-                      {`$$\\begin{bmatrix} ${matrixDetOrdo2.map(row => row.join(' & ')).join(' \\\\ ')} \\end{bmatrix}$$`}
-                    </Latex>
-
-                  </div>
-                </div>
-                <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
-                  <div className='mb-[32px]'>
-                    <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
-                      Langkah 2 : mengoperasikan matrix [A1 x B2] - [B1 x A2]
-                    </Typography> 
-                  </div>
+                  <div className='bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg'>
+                    <div className='mb-[32px]'>
+                      <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
+                        Langkah 2 : mengoperasikan matrix [A1 x B2] - [B1 x A2]
+                      </Typography> 
+                    </div>
                     <div className='flex mb-8'>
                       <Latex>{a1b2}</Latex>
                         <p>&nbsp;-&nbsp; </p>
                       <Latex>{a2b1}</Latex>
                     </div>
                   </div>
-                  <div>
-                    {menampilkanPerhitungan()}
-                  </div>
+                    <div>
+                      {menampilkanPerhitungan()}
+                    </div>
                 </div>
               </div>
             )}
@@ -285,43 +344,37 @@ const Determinanordo2 = () => {
         </div>
         <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
           <div className='flex mb-[14px]'>
-          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
+            <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
           </div>
           <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
-          <p>
-            &nbsp; Determinan adalah nilai yang dapat dihitung dari unsur-unsur suatu matriks persegi,
-            Faktor skala transformasi yang digambarkan oleh matriks juga disebut dengan determinan,
-            lalu determinan dari matriks A dinotasikan dengan det (A) atau |A|.
-          </p>
-          <h2 className='mt-2 mb-1'>
-          &nbsp; <strong>Matriks Ordo 2 x 2</strong>
-          </h2>
+            <p>
+              &nbsp; Determinan adalah nilai yang dapat dihitung dari unsur-unsur suatu matriks persegi,
+              Faktor skala transformasi yang digambarkan oleh matriks juga disebut dengan determinan,
+              lalu determinan dari matriks A dinotasikan dengan det (A) atau |A|.
+            </p>
+            <h2 className='mt-2 mb-1'>&nbsp; <strong>Matriks Ordo 2 x 2</strong></h2>
           </Typography>
           <div>
           <Typography variant='p' sx={{fontFamily: 'Merriweather'}}>
             <p>Rumus Umum :</p>
-            <Latex>
-            {rumusUmum}
-            </Latex>
-            <p className='my-1'>
-              det (A) = |A| = a.d - b.c
-            </p>
-            <p>
-            &nbsp;<strong>Contoh :</strong>
-              <p className='py-2 mb-1'>
-                Misal Matriks A = <Latex>{contohRumus}</Latex>
-              </p>
-              <p className='py2'>
-                |A| = <Latex>{contohRumus}</Latex>
-              </p>
-              <p className='py-2'>4-6 = -2 </p>
-              <p>
-                <strong>Ketentuan Determinan Ordo 2 x 2 :</strong>
-              <p>1. Jika determinan matriks ordo 2 x 2 adalah nol, maka matriks tersebut tidak memiliki invers</p>
-              <p>2. Jika determinan matriks ordo 2 x 2 tidak sama dengan nol, maka matriks tersebut memiliki invers. Yaitu :</p>
-              <p> <Latex>{inversOrdo2x2}</Latex></p>
-              </p>
-            </p>
+              <Latex>
+              {rumusUmum}
+              </Latex>
+              <p className='my-1'>det (A) = |A| = a.d - b.c</p>
+              <>
+                <p>  
+                  &nbsp;<strong>Contoh :</strong>
+                </p>
+                <p className='py-2 mb-1'>Misal Matriks A = <Latex>{contohRumus}</Latex></p>
+                <p className='py2'>|A| = <Latex>{contohRumus}</Latex></p>
+                <p className='py-2'>4-6 = -2 </p>
+                <>
+                  <p><strong>Ketentuan Determinan Ordo 2 x 2 :</strong></p>
+                  <p>1. Jika determinan matriks ordo 2 x 2 adalah nol, maka matriks tersebut tidak memiliki invers</p>
+                  <p>2. Jika determinan matriks ordo 2 x 2 tidak sama dengan nol, maka matriks tersebut memiliki invers. Yaitu :</p>
+                  <p><Latex>{inversOrdo2x2}</Latex></p>
+                </>
+              </>
             </Typography>
           </div>
         </div>

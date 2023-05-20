@@ -5,12 +5,20 @@ import 'react-toastify/dist/ReactToastify.css';
 var Latex = require('react-latex');
 
 const Minorordo2 = () => {
+  //State Awal Matrix & Hasil Minor
   const [matrixMinorOrdo2, setMatrixMinorOrdo2] = useState([
     ['', ''],
     ['', '']
   ]);
 
+  //Variabel tampung hasil
   const [minorOrdo2, setMinorOrdo2] = useState(null);
+
+    //Validasi sudah dihitung
+    const [isClicked, setIsClicked] = useState(false);
+
+    //Validasi sudah diinput 
+    const [isMatrixChanged, setIsMatrixChanged] = useState(false);
 
   // Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataMinorOrdo2, setDataMinorOrdo2] = useState(() => {
@@ -24,13 +32,74 @@ const Minorordo2 = () => {
     newMatrix[row][col] = isNaN(value) ? 0 : value;
 
     setMatrixMinorOrdo2(newMatrix);
+    setIsMatrixChanged(true)
   }
 
   // Mengatur Simpan, Hitung, Hasil
   const SimpanMinorOrdo2 = (e) => {
     e.preventDefault();
+  
+    if (matrixMinorOrdo2 !== null && minorOrdo2 !== null) {
+      const isDataExist = dataMinorOrdo2.some((data) =>
+        JSON.stringify(data.MatrixMinorOrdo2) === JSON.stringify(matrixMinorOrdo2)
+      );
+  
+      if (isDataExist) {
+        toast.warning('Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.success('Perhitungan disimpan 🙂✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+        let dataMinorOrdo2Obj = {
+          ID: 'Minor Ordo 2',
+          MatrixMinorOrdo2: matrixMinorOrdo2,
+          MinorOrdo2: minorOrdo2
+        };
+  
+        setDataMinorOrdo2((prevDataMinorOrdo2) => [...prevDataMinorOrdo2, dataMinorOrdo2Obj]);
+      }
+    } else {
+      toast.warning('Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+  
+  useEffect(() => {
+    localStorage.setItem('MinorOrdo2', JSON.stringify(dataMinorOrdo2));
+  }, [dataMinorOrdo2]);
 
-    toast.success('Perhitungan disimpan 🙂✨ ', {
+  const ResetMinorOrdo2 = () => {
+    // Cek apakah data matriks sudah kosong
+    if (matrixMinorOrdo2.length === 0 ||
+      matrixMinorOrdo2[0].every(val => val === '') || 
+      matrixMinorOrdo2[1].every(val => val === '') 
+     ) {
+    toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -40,23 +109,13 @@ const Minorordo2 = () => {
       progress: undefined,
       theme: "light",
     });
+    return; // Berhenti jika data matriks kosong
+  }
 
-    let dataMinorOrdo2Obj = {
-      ID: 'Minor Ordo 2',
-      MatrixMinorOrdo2: matrixMinorOrdo2,
-      MinorOrdo2: minorOrdo2
-    };
-
-    setDataMinorOrdo2((prevDataMinorOrdo2) => [...prevDataMinorOrdo2, dataMinorOrdo2Obj]);
-  };
-
-  useEffect(() => {
-    localStorage.setItem('MinorOrdo2', JSON.stringify(dataMinorOrdo2));
-  }, [dataMinorOrdo2]);
-
-  const ResetMinorOrdo2 = () => {
     setMinorOrdo2(null);
     setMatrixMinorOrdo2([['', ''], ['', '']]);
+    setIsClicked(false);
+    setIsMatrixChanged(false);
 
     toast.error('Perhitungan Telah Dihapus ❌', {
       position: "top-right",
@@ -67,20 +126,24 @@ const Minorordo2 = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
 
   function handleMinorOrdo2() {
-    toast('🚀 Perhitungan Berhasil !!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    if (!isMatrixChanged) {
+      toast('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
+
     const [a, b] = matrixMinorOrdo2[0];
     const [c, d] = matrixMinorOrdo2[1];
 
@@ -92,21 +155,32 @@ const Minorordo2 = () => {
     const hasil = [m11, m12, m21, m22];
 
     setMinorOrdo2(hasil);
+    setIsClicked(true);
+
+    toast('🚀 Perhitungan Berhasil !!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   const m11 = `M11 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[0] : 0} \\end{bmatrix}$$`;
   const m12 = `M12 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[1] : 0} \\end{bmatrix}$$`;
   const m21 = `M21 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[2] : 0} \\end{bmatrix}$$`;
   const m22 = `M22 = $$\\begin{bmatrix} ${minorOrdo2 ? minorOrdo2[3] : 0} \\end{bmatrix}$$`;
-
   const minorOrdo2x2 = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
 
   return (
     <>
       <div className='flex flex-col items-center sm:flex-row sm:items-start justify-center'>
-      <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1130px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
-      <div className='flex '>
-          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
+        <div className='bg-[#FFF8F2] sm:max-h-auto md:h-[1130px] lg:min-h-[90%] text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
+          <div className='flex '>
+            <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Petunjuk Penggunaan :</strong></Typography>
           </div>
           <br/>
           <Typography variant='p' sx ={{fontFamily : 'Merriweather'}} >
@@ -219,7 +293,7 @@ const Minorordo2 = () => {
             />
           <ToastContainer />
           <div>
-            {minorOrdo2 !== null && (
+            {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">
@@ -310,59 +384,37 @@ const Minorordo2 = () => {
         </div>
         <div className='bg-[#FFF8F2] sm:max-h-auto text-sm w-[90%] mb-5 sm:w-[200px] shadow-xl p-4 mt-4 sm:mt-0 sm:mr-4'>
         <Typography variant='p' sx={{fontFamily : 'Merriweather'}}><strong>Materi Pembahasan</strong></Typography>
-        <Typography variant='p' sx={{fontFamily : 'Merriweather'}}>
-        <p className='mt-4'>
-          Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom
-        </p>
-        <p className='py-2'>
-          <strong>Rumus :</strong>
-        </p>
-        <p>
-        det |A| = (a.d) - (b.c)
-        </p>
-        <p>
-        Dalam rumus ini, elemen-elemen matriks digunakan dalam perhitungan minor ordo 2 x 2
-        </p>
-        <p className='py-2'>
-          <strong>Misalkan :</strong>
-        </p>
-        <p>
-        <Latex>
-         {minorOrdo2x2}
-        </Latex>
-        </p>
-        <p className='mt-4'>
-          <strong>Minor ordo 2 x 2 yang terbentuk adalah :</strong>
-        </p>
-        <p>
-        <li>
-         Minor M11 :
-        </li>
-        </p>
-        <p>
-        Minor M11 terbentuk dengan menghapus baris pertama dan kolom pertama dari matriks A. Minor M11 adalah matriks 1x1 yang terdiri dari elemen d
-        </p>
-        <li>
-          Minor M12 :
-        </li>
-        <p>
-        Minor M12 terbentuk dengan menghapus baris pertama dan kolom kedua dari matriks A. Minor M12 adalah matriks 1x1 yang terdiri dari elemen c
-        </p>
-        <li>
-          Minor M21 :
-        </li>
-        <p>
-        Minor M21 terbentuk dengan menghapus baris kedua dan kolom pertama dari matriks A. Minor M21 adalah matriks 1x1 yang terdiri dari elemen b
-        </p>
-        <li>
-          Minor M22 :
-        </li>
-        <p>
-        Minor M22 terbentuk dengan menghapus baris kedua dan kolom kedua dari matriks A. Minor M22 adalah matriks 1x1 yang terdiri dari elemen a
-        </p>
-        </Typography>
+          <Typography variant='p' sx={{fontFamily : 'Merriweather'}}>
+            <p className='mt-4'>Untuk matriks ordo 2 x 2, terdapat 4 minor ordo 2 x 2 yang masing-masing terbentuk dengan menghapus satu baris dan satu kolom</p>
+            <p className='py-2'><strong>Rumus :</strong></p>
+            <p>det |A| = (a.d) - (b.c)</p>
+            <p>Dalam rumus ini, elemen-elemen matriks digunakan dalam perhitungan minor ordo 2 x 2</p>
+            <p className='py-2'>
+              <strong>Misalkan :</strong>
+            </p>
+            <p>
+              <Latex>
+              {minorOrdo2x2}
+              </Latex>
+            </p>
+            <p className='mt-4'><strong>Minor ordo 2 x 2 yang terbentuk adalah :</strong></p>
+            <>
+              <li>Minor M11 :</li>
+            </>
+            <p>Minor M11 terbentuk dengan menghapus baris pertama dan kolom pertama dari matriks A. Minor M11 adalah matriks 1x1 yang terdiri dari elemen d</p>
+              <li>Minor M12 :</li>
+            <p>Minor M12 terbentuk dengan menghapus baris pertama dan kolom kedua dari matriks A. Minor M12 adalah matriks 1x1 yang terdiri dari elemen c</p>
+              <li>
+                Minor M21 :
+              </li>
+            <p>Minor M21 terbentuk dengan menghapus baris kedua dan kolom pertama dari matriks A. Minor M21 adalah matriks 1x1 yang terdiri dari elemen b</p>
+              <li>
+                Minor M22 :
+              </li>
+            <p>Minor M22 terbentuk dengan menghapus baris kedua dan kolom kedua dari matriks A. Minor M22 adalah matriks 1x1 yang terdiri dari elemen a</p>
+          </Typography>
+        </div>
       </div>
-    </div>
     </>
   )
 }
