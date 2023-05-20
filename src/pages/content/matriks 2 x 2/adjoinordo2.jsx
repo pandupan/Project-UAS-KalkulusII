@@ -5,18 +5,43 @@ import "react-toastify/dist/ReactToastify.css";
 import Latex from "react-latex";
 
 const Adjoinordo2 = () => {
+  //State Awal Matrix & Hasil Kofaktor
   const [matrixAdjOrdo2, setMatrixAdjOrdo2] = useState([
     ["", ""],
     ["", ""],
   ]);
 
+  //Variabel hitung hasil
   const [adjoinOrdo2, setAdjoinOrdo2] = useState([""]);
 
+  //Validasi sudah dihitung
   const [kofaktorOrdo2, setKofaktorOrdo2] = useState([]);
 
+  //Validasi sudah diinput
   const [isClicked, setIsClicked] = useState(false);
 
+  //Validasi sudah diinput
+  const [isMatrixChanged, setIsMatrixChanged] = useState(false);
+
+  //Mengambil Data Dari Local Storage & Menambahkan Data Baru
+  const [dataAdjOrdo2, setDataAdjOrdo2] = useState(() => {
+    const storedDataAdjOrdo2 = localStorage.getItem("AdjOrdo2");
+    return storedDataAdjOrdo2 ? JSON.parse(storedDataAdjOrdo2) : [];
+  });
+
+  //Mengatur Input Masukan
+  function handleInputChange(event, row, col) {
+    const value = parseFloat(event.target.value);
+    const newMatrix = [...matrixAdjOrdo2];
+    newMatrix[row][col] = isNaN(value) ? 0 : value;
+
+    setMatrixAdjOrdo2(newMatrix);
+    setIsMatrixChanged(true)
+  }
+  
+  //Menghitung Hasil Kofaktor
   function handleKofaktor() {
+
     const [a, b] = matrixAdjOrdo2[0];
     const [c, d] = matrixAdjOrdo2[1];
 
@@ -31,17 +56,23 @@ const Adjoinordo2 = () => {
     const hasil = [m11, m12, m21, m22];
 
     setKofaktorOrdo2(hasil);
-    setIsClicked(true);
   }
 
-  function handleInputChange(event, row, col) {
-    const value = parseFloat(event.target.value);
-    const newMatrix = [...matrixAdjOrdo2];
-    newMatrix[row][col] = isNaN(value) ? 0 : value;
-    setMatrixAdjOrdo2(newMatrix);
-  }
-
+  //Handle Nilai Akhir Adjoin
   function handleAdjoinOrdo2() {
+    if (!isMatrixChanged || matrixAdjOrdo2.flat().every(val => val === '')) {
+      toast.warning('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
 
     toast('🚀 Perhitungan Berhasil !!', {
       position: "top-right",
@@ -52,7 +83,7 @@ const Adjoinordo2 = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
     
     const [a, b] = matrixAdjOrdo2[0];
     const [c, d] = matrixAdjOrdo2[1];
@@ -72,13 +103,9 @@ const Adjoinordo2 = () => {
     const nilaiAdjoin = [adj[0], adj[1], adj[2], adj[3]];
 
     setAdjoinOrdo2(nilaiAdjoin);
+    setIsClicked(true);
+    setIsMatrixChanged(true)
   }
-
-  // Mengambil Data Dari Local Storage & Menambahkan Data Baru
-  const [dataAdjOrdo2, setDataAdjOrdo2] = useState(() => {
-    const storedDataAdjOrdo2 = localStorage.getItem("AdjOrdo2");
-    return storedDataAdjOrdo2 ? JSON.parse(storedDataAdjOrdo2) : [];
-  });
 
   useEffect(() => {
     const storedDataAdjOrdo2 = localStorage.getItem("AdjOrdo2");
@@ -87,13 +114,30 @@ const Adjoinordo2 = () => {
     }
   }, []);
 
+  //Mereset data
   const resetAdjoinOrdo2 = () => {
+    // Cek apakah data matriks sudah kosong
+  if (matrixAdjOrdo2.flat().every(val => val === '')) {
+    toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    return; // Berhenti jika data matriks kosong
+  }
+    //Lakukan reset
     setAdjoinOrdo2([""]);
     setMatrixAdjOrdo2([
       ["", ""],
       ["", ""],
     ]);
     setIsClicked(false);
+    setIsMatrixChanged(false)
 
     toast.error('Perhitungan Telah Dihapus ❌', {
       position: "top-right",
@@ -104,42 +148,86 @@ const Adjoinordo2 = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
 
+  //Simpan data
   const simpanAdjoinOrdo2 = (e) => {
     e.preventDefault();
-
-    toast.success("Perhitungan disimpan 🙂✨ ", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-    let dataAdjoinOrdo2Obj = {
-      ID: "Adjoin Ordo 2",
-      MatrixAdjoinOrdo2: matrixAdjOrdo2,
-      AdjoinOrdo2: adjoinOrdo2,
-    };
-
-    setDataAdjOrdo2((prevDataAdjOrdo2) => [
-      ...prevDataAdjOrdo2,
-      dataAdjoinOrdo2Obj,
-    ]);
+  
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+    if ( adjoinOrdo2.length !== 0 && adjoinOrdo2.every((elem) => typeof elem === 'number')) {
+      const isDataExist = dataAdjOrdo2.some(
+        (data) => JSON.stringify(data.MatrixAdjoinOrdo2) === JSON.stringify(matrixAdjOrdo2)
+      );
+  
+      if (isDataExist) {
+        toast.warning(
+          "Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
+      } else {
+        toast.success("Perhitungan disimpan 🙂✨", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+        let dataAdjoinOrdo2Obj = {
+          ID: "Adjoin Ordo 2",
+          MatrixAdjoinOrdo2: matrixAdjOrdo2,
+          AdjoinOrdo2: adjoinOrdo2,
+        };
+  
+        setDataAdjOrdo2((prevDataAdjOrdo2) => [...prevDataAdjOrdo2, dataAdjoinOrdo2Obj]);
+      }
+    } else {
+      toast.warning("Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
-
+  
   useEffect(() => {
     localStorage.setItem("AdjOrdo2", JSON.stringify(dataAdjOrdo2));
   }, [dataAdjOrdo2]);
 
   const hasilMinor = ` $$\\begin{bmatrix} M11 & M12 \\\\ M21 & M22 \\end{bmatrix}$$`;
   const rumusKofaktor = ` =$$\\begin{bmatrix} + & - \\\\ - & + \\end{bmatrix}$$`;
-  const matriksAdj2 = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
+  const matriksAdjRumus2 = ` A=$$\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$$`;
   const matriksKofaktor = `A=$$\\begin{bmatrix} d & -c \\\\ -b & a \\end{bmatrix}$$`;
   const matriksAdjoin = ` =$$\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}$$`;
 
@@ -155,38 +243,18 @@ const Adjoinordo2 = () => {
           <br />
           <Typography variant="p" sx={{ fontFamily: "Merriweather" }}>
             <ol style={{ listStyleType: "decimal" }}>
-              <li>
-                Masukkan elemen-elemen matriks ordo 2 x 2 ke dalam kolom atau
-                baris yang sesuai dengan kotak yang tersedia
-              </li>
-              <li>
-                Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol
-                'Tentukan Adjoin' untuk mengaktifkan perhitungan
-              </li>
-              <li>
-                CalMath akan menampilkan hasil dan langkah penyelesaian adjoin
-                ordo 2 x 2 dari matriks yang Anda masukkan di layar kalkulator
-              </li>
-              <li>
-                Hasil operasi hitung adjoin ordo 2 x 2 dapat Anda simpan dan
-                ditampilkan dalam Riwayat
-              </li>
-              <li>
-                Jika Anda ingin menghitung nilai dari adjoin ordo 2 x 2 yang
-                lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah
-                sebelumnya
-              </li>
+              <li>Masukkan elemen-elemen matriks ordo 2 x 2 ke dalam kolom atau baris yang sesuai dengan kotak yang tersedia</li>
+              <li>Setelah memasukkan nilai-nilai elemen matriks, lalu tekan tombol Tentukan Adjoin' untuk mengaktifkan perhitungan</li>
+              <li>CalMath akan menampilkan hasil dan langkah penyelesaian adjoin ordo 2 x 2 dari matriks yang Anda masukkan di layar kalkulator</li>
+              <li>Hasil operasi hitung adjoin ordo 2 x 2 dapat Anda simpan dan ditampilkan dalam Riwayat</li>
+              <li>Jika Anda ingin menghitung nilai dari adjoin ordo 2 x 2 yang lain, Anda bisa klik tombol "Reset" dan ulangi langkah-langkah sebelumnya</li>
             </ol>
           </Typography>
         </div>
         <div className="w-full md:max-w-[697px] p-6 bg-[#FFF8F2] shadow-xl rounded-lg mr-4">
           <div className="justify-center">
             <div className="rounded-3xl py-2 max-h-screen bg-[#423232] text-center w-full">
-              <Typography
-                className="text-[#F0EAC0] text-[36px] font-normal"
-                variant="p"
-                sx={{ fontFamily: "Crimson Text" }}
-              >
+              <Typography className="text-[#F0EAC0] text-[36px] font-normal" variant="p" sx={{ fontFamily: "Crimson Text" }}>
                 Adjoin Ordo 2x2
               </Typography>
             </div>
@@ -225,7 +293,7 @@ const Adjoinordo2 = () => {
               }}
               className="px-4 py-2 bg-[#E09132] text-white rounded-full"
             >
-              Tentukan Adjoin →{" "}
+              Tentukan Adjoin →
             </button>
             <button
               onClick={resetAdjoinOrdo2}
@@ -282,11 +350,7 @@ const Adjoinordo2 = () => {
             {isClicked && (
               <div className=" shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg">
                 <div className="top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg">
-                  <Typography
-                    variant="p"
-                    sx={{ fontFamily: "Merriweather" }}
-                    className="text-black"
-                  >
+                  <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                     Hasil dari adjoin yang anda cari adalah:
                   </Typography>
                   <Latex>
@@ -296,62 +360,40 @@ const Adjoinordo2 = () => {
                 <div className="flex flex-wrap items-center gap-4 justify-center mt-5">
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-4">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                         Langkah 1 : mengambarkan Matrix
                       </Typography>
                     </div>
                     <div className="mb-6">
                       <Latex>
-                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2
-                          .map((row) => row.join(" & "))
-                          .join(" \\\\ ")} \\end{bmatrix}$$`}
+                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}$$`}
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-4">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                         Langkah 2 : menentukan M11
                       </Typography>
                     </div>
                     <div className="mb-6">
                       <Latex>
-                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2
-                          .map((row) => row.join(" & "))
-                          .join(" \\\\ ")} \\end{bmatrix}$$`}
+                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}$$`}
                       </Latex>
                       <Latex>
-                        {`= $$\\begin{bmatrix} ${
-                          matrixAdjOrdo2 ? matrixAdjOrdo2[1][1] : 0
-                        } \\end{bmatrix}$$`}
+                        {`= $$\\begin{bmatrix} ${matrixAdjOrdo2 ? matrixAdjOrdo2[1][1] : 0} \\end{bmatrix}$$`}
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-4">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                         Langkah 2 : menentukan M12
                       </Typography>
                     </div>
                     <div className="mb-6">
                       <Latex>
-                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2
-                          .map((row) => row.join(" & "))
-                          .join(" \\\\ ")} \\end{bmatrix}$$`}
+                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}$$`}
                       </Latex>
                       <Latex>
                         {`= $$\\begin{bmatrix} ${
@@ -360,62 +402,39 @@ const Adjoinordo2 = () => {
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-4">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                         Langkah 3 : menentukan M21
                       </Typography>
                     </div>
                     <div className="mb-6">
                       <Latex>
-                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2
-                          .map((row) => row.join(" & "))
-                          .join(" \\\\ ")} \\end{bmatrix}$$`}
+                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}$$`}
                       </Latex>
                       <Latex>
-                        {`= $$\\begin{bmatrix} ${
-                          matrixAdjOrdo2 ? matrixAdjOrdo2[0][1] : 0
-                        } \\end{bmatrix}$$`}
+                        {`= $$\\begin{bmatrix} ${matrixAdjOrdo2 ? matrixAdjOrdo2[0][1] : 0} \\end{bmatrix}$$`}
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-4">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p" sx={{ fontFamily: "Merriweather" }} className="text-black">
                         Langkah 4 : menentukan M22
                       </Typography>
                     </div>
                     <div className="mb-6">
                       <Latex>
-                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2
-                          .map((row) => row.join(" & "))
-                          .join(" \\\\ ")} \\end{bmatrix}$$`}
+                        {`$$\\begin{bmatrix} ${matrixAdjOrdo2.map((row) => row.join(" & ")).join(" \\\\ ")} \\end{bmatrix}$$`}
                       </Latex>
                       <Latex>
-                        {`= $$\\begin{bmatrix} ${
-                          matrixAdjOrdo2 ? matrixAdjOrdo2[0][0] : 0
-                        } \\end{bmatrix}$$`}
+                        {`= $$\\begin{bmatrix} ${matrixAdjOrdo2 ? matrixAdjOrdo2[0][0] : 0} \\end{bmatrix}$$`}
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-[32px]">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p"  sx={{ fontFamily: "Merriweather" }}  className="text-black"  >
                         Langkah 5 : Mengalikan hasil minor dengan pola kofaktor
                       </Typography>
                     </div>
@@ -426,11 +445,7 @@ const Adjoinordo2 = () => {
                   </div>
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-[32px]">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography  variant="p"  sx={{ fontFamily: "Merriweather" }}  className="text-black"  >
                         Langkah 6 : Mendapatkan hasil kofaktor
                       </Typography>
                     </div>
@@ -440,14 +455,9 @@ const Adjoinordo2 = () => {
                       </Latex>
                     </div>
                   </div>
-
                   <div className="bg-[#FFF8F2] max-w-[280px] h-[200px] flex flex-col justify-center p-4 items-center shadow-lg rounded-lg">
                     <div className="mb-[32px]">
-                      <Typography
-                        variant="p"
-                        sx={{ fontFamily: "Merriweather" }}
-                        className="text-black"
-                      >
+                      <Typography variant="p"  sx={{ fontFamily: "Merriweather" }} className="text-black" >
                         Langkah 7 : Melakukan Tranpose hasil kofaktor
                       </Typography>
                     </div>
@@ -467,41 +477,21 @@ const Adjoinordo2 = () => {
             <strong>Materi Pembahasan</strong>
           </Typography>
           <Typography variant="p" sx={{ fontFamily: "Merriweather" }}>
-            <p className="py-2">
-              &nbsp; Adjoin adalah matriks kofaktor yang di transposkan (baris
-              jadi kolom, kolom jadi baris)
+            <p className="py-2">&nbsp; Adjoin adalah matriks kofaktor yang di transposkan (baris jadi kolom, kolom jadi baris)
             </p>
-            <p className="pb-2">
-              &nbsp; Adjoin matriks ordo 2 x 2 adalah matriks yang diperoleh
-              dengan menukar elemen-elemen pada diagonal utama (elemen diagonal
-              dari kiri atas ke kanan bawah) dan mengubah tanda elemen-elemen di
-              luar diagonal
-            </p>
-            <p className="pb-2">
-              &nbsp; Misalkan terdapat matriks <Latex>{matriksAdj2}</Latex>
-            </p>
-            <p className="pb-2">
-              &nbsp; Langkah pertama dalam menghitung adjoin ordo 2 x 2 adalah
-              menghitung matriks kofaktor
+            <p className="pb-2">&nbsp; Adjoin matriks ordo 2 x 2 adalah matriks yang diperoleh dengan menukar elemen-elemen pada diagonal utama (elemen diagonal dari kiri atas ke kanan bawah) dan mengubah tanda elemen-elemen di luar diagonal</p>
+            <p className="pb-2">&nbsp; Misalkan terdapat matriks <Latex>{matriksAdjRumus2}</Latex></p>
+            <p className="pb-2">&nbsp; Langkah pertama dalam menghitung adjoin ordo 2 x 2 adalah menghitung matriks kofaktor
             </p>
             <p>
               <Latex>{matriksKofaktor}</Latex>
             </p>
-            <p className="py-2">
-              &nbsp; Langkah berikutnya adalah mentranspos matriks kofaktor.
-              Transpos matriks adalah operasi yang menukar baris menjadi kolom
-              dan kolom menjadi baris.
-            </p>
+            <p className="py-2">&nbsp; Langkah berikutnya adalah mentranspos matriks kofaktor.Transpos matriks adalah operasi yang menukar baris menjadi kolom dan kolom menjadi baris. </p>
             <p className="py-2">&nbsp; Matriks adjoin dari matriks A adalah:</p>
             <p>
               <Latex>{matriksAdjoin}</Latex>
             </p>
-            <p className="mt-4">
-              &nbsp; Jadi, jika terdapat matriks A dengan ordo 2x2, matriks
-              adjoin dari A adalah matriks dengan elemen-elemen yang ditukar
-              antara elemen diagonal utama (a dan d) dan elemen diagonal
-              sekunder (-b dan -c).
-            </p>
+            <p className="mt-4">&nbsp; Jadi, jika terdapat matriks A dengan ordo 2x2, matriks adjoin dari A adalah matriks dengan elemen-elemen yang ditukar antara elemen diagonal utama (a dan d) dan elemen diagonal sekunder (-b dan -c).</p>
           </Typography>
         </div>
       </div>

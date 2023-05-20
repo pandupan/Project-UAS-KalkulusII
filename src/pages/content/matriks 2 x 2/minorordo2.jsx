@@ -14,11 +14,11 @@ const Minorordo2 = () => {
   //Variabel tampung hasil
   const [minorOrdo2, setMinorOrdo2] = useState(null);
 
-    //Validasi sudah dihitung
-    const [isClicked, setIsClicked] = useState(false);
+  //Validasi sudah dihitung
+  const [isClicked, setIsClicked] = useState(false);
 
-    //Validasi sudah diinput 
-    const [isMatrixChanged, setIsMatrixChanged] = useState(false);
+  //Validasi sudah diinput 
+  const [isMatrixChanged, setIsMatrixChanged] = useState(false);
 
   // Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataMinorOrdo2, setDataMinorOrdo2] = useState(() => {
@@ -32,12 +32,26 @@ const Minorordo2 = () => {
     newMatrix[row][col] = isNaN(value) ? 0 : value;
 
     setMatrixMinorOrdo2(newMatrix);
-    setIsMatrixChanged(true)
+    setIsMatrixChanged(true) 
   }
 
   // Mengatur Simpan, Hitung, Hasil
   const SimpanMinorOrdo2 = (e) => {
     e.preventDefault();
+
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
   
     if (matrixMinorOrdo2 !== null && minorOrdo2 !== null) {
       const isDataExist = dataMinorOrdo2.some((data) =>
@@ -95,10 +109,7 @@ const Minorordo2 = () => {
 
   const ResetMinorOrdo2 = () => {
     // Cek apakah data matriks sudah kosong
-    if (matrixMinorOrdo2.length === 0 ||
-      matrixMinorOrdo2[0].every(val => val === '') || 
-      matrixMinorOrdo2[1].every(val => val === '') 
-     ) {
+    if (matrixMinorOrdo2.flat().every(val => val === '')) {
     toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
       position: "top-right",
       autoClose: 5000,

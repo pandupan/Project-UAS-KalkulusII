@@ -87,6 +87,20 @@ const  Kofaktorordo2 = () => {
   //Mengatur Simpan,Hitung, Hasil 
   const SimpanKofOrdo2 = (e) => {
     e.preventDefault();
+
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
   
     if (matrixKofaktorOrdo2 !== null && kofaktorOrdo2 !== null) {
       const isDataExist = dataKofOrdo2.some((data) =>
@@ -144,10 +158,7 @@ const  Kofaktorordo2 = () => {
 
   const ResetKofOrdo2 = () => {
     //Cek apakah data matriks sudah kosong
-    if (matrixKofaktorOrdo2.length === 0 ||
-      matrixKofaktorOrdo2[0].every(val => val === '') || 
-      matrixKofaktorOrdo2[1].every(val => val === '') 
-     ) {
+    if (matrixKofaktorOrdo2.flat().every(val => val === '')) {
     toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
       position: "top-right",
       autoClose: 5000,

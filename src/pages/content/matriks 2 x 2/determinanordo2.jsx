@@ -76,6 +76,20 @@ const Determinanordo2 = () => {
 
   const SimpanDetOrdo2 = (e) => {
     e.preventDefault();
+
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
   
     if (determinanOrdo2 !== null) {
       const isDataExist = dataDetOrdo2.some((data) =>
@@ -114,7 +128,7 @@ const Determinanordo2 = () => {
         setDataDetOrdo2((prevDataDetOrdo2) => [...prevDataDetOrdo2, dataDetOrdo2Obj]);
       }
     } else {
-      toast.warning('Silakan Lakukan perhitung terlebih dahulu sebelum menyimpan ⛔', {
+      toast.warning('Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -133,10 +147,7 @@ const Determinanordo2 = () => {
 
   const ResetDetOrdo2 = () => {
     // Cek apakah data matriks sudah kosong
-    if (matrixDetOrdo2.length === 0 ||
-        matrixDetOrdo2[0].every(val => val === '') || 
-        matrixDetOrdo2[1].every(val => val === '') 
-       ) {
+    if (matrixDetOrdo2.flat().every(val => val === '')) {
       toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
         position: "top-right",
         autoClose: 5000,

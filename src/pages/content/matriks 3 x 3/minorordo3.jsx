@@ -4,14 +4,22 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 var Latex = require('react-latex');
 
-const Minorordo3 = () => {
+const Minorordo3 = () => { 
+  //State Awal Matrix & Hasil Minor
   const [matrixMinorOrdo3, setMatrixMinorOrdo3] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
-  
+
+  //Variabel tampung hasil
   const [minorOrdo3, setMinorOrdo3] = useState(null);
+
+    //Validasi sudah dihitung
+    const [isClicked, setIsClicked] = useState(false);
+
+    //Validasi sudah diinput 
+    const [isMatrixChanged, setIsMatrixChanged] = useState(false);
   
   // Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataMinorOrdo3, setDataMinorOrdo3] = useState(() => {
@@ -24,38 +32,101 @@ const Minorordo3 = () => {
     const newMatrix = [...matrixMinorOrdo3];
     newMatrix[row][col] = isNaN(value) ? 0 : value;
     setMatrixMinorOrdo3(newMatrix);
+    setIsMatrixChanged(true)
   }
   
   // Mengatur Simpan, Hitung, Hasil
-  const simpanMinorOrdo3 = (e) => {
+  const SimpanMinorOrdo3 = (e) => {
     e.preventDefault();
-
-    toast.success('Perhitungan disimpan 🙂✨ ', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   
-    let dataMinorOrdo3Obj = {
-      ID: 'Minor Ordo 3',
-      MatrixMinorOrdo3: matrixMinorOrdo3,
-      MinorOrdo3: minorOrdo3
-    };
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
   
-    setDataMinorOrdo3((prevDataMinorOrdo3) => [...prevDataMinorOrdo3, dataMinorOrdo3Obj]);
-  };
+    if (matrixMinorOrdo3 !== null && minorOrdo3 !== null) {
+      const isDataExist = dataMinorOrdo3.some((data) =>
+        JSON.stringify(data.MatrixMinorOrdo3) === JSON.stringify(matrixMinorOrdo3)
+      );
+  
+      if (isDataExist) {
+        toast.warning('Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.success('Perhitungan disimpan 🙂✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+        let dataMinorOrdo3Obj = {
+          ID: 'Minor Ordo 3',
+          MatrixMinorOrdo3: matrixMinorOrdo3,
+          MinorOrdo3: minorOrdo3
+        };
+  
+        setDataMinorOrdo3((prevDataMinorOrdo3) => [...prevDataMinorOrdo3, dataMinorOrdo3Obj]);
+      }
+    } else {
+      toast.warning('Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };  
   
   useEffect(() => {
     localStorage.setItem('MinorOrdo3', JSON.stringify(dataMinorOrdo3));
   }, [dataMinorOrdo3]);
   
   const resetMinorOrdo3 = () => {
+    // Cek apakah data matriks sudah kosong
+    if (matrixMinorOrdo3.flat().every(val => val === '')) {
+      toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data matriks kosong
+    }
+
     setMinorOrdo3(null);
+    setIsClicked(false)
+    setIsMatrixChanged(false)
+
     setMatrixMinorOrdo3([['', '', ''], ['', '', ''], ['', '', '']]);
     toast.error('Perhitungan Telah Dihapus ❌', {
       position: "top-right",
@@ -70,6 +141,19 @@ const Minorordo3 = () => {
   };
   
   function handleMinorOrdo3(){
+    if (!isMatrixChanged) {
+      toast('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
     const [a,b,c] = matrixMinorOrdo3[0]
     const [d,e,g] = matrixMinorOrdo3[1]
     const [h,i,j] = matrixMinorOrdo3[2]
@@ -95,6 +179,8 @@ const Minorordo3 = () => {
     const hasil = [m11,m12,m13,m21,m22,m23,m31,m32,m33]
 
     setMinorOrdo3(hasil)
+    setIsClicked(true);
+
     toast('🚀 Perhitungan Berhasil !!', {
       position: "top-right",
       autoClose: 5000,
@@ -202,7 +288,7 @@ const Minorordo3 = () => {
               Reset  →
             </button>
             <form>
-              <button onClick={simpanMinorOrdo3} className="px-4 py-2 bg-green-600 text-white rounded-full">
+              <button onClick={SimpanMinorOrdo3} className="px-4 py-2 bg-green-600 text-white rounded-full">
                 Simpan  →
               </button>
             </form>
@@ -244,7 +330,7 @@ const Minorordo3 = () => {
             />
           <ToastContainer />
           <div>
-            {minorOrdo3 !== null && (
+            {isClicked && (
               <div className=' shadow-md bg-[#FFF8F2] p-4 relative justify-center flex flex-wrap mt-[50px] border rounded-lg'>
                 <div className='top-[-10px] border shadow-md p-2 bg-[#FFF8F2] rounded-lg flex flex-col'>
                 <Typography variant='p' sx={{fontFamily : 'Merriweather'}} className="text-black">

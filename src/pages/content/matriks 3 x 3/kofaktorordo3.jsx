@@ -6,31 +6,54 @@ import 'react-toastify/dist/ReactToastify.css';
 import Latex from 'react-latex'
 
 const Kofaktor3 = () => {
-
+  //State Awal Matrix & Hasil KOfaktor
   const [matrixKofaktorOrdo3, setMatrixKofaktorOrdo3] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
 
+  //Variable tampung tampil
   const [tampilKofaktorOrdo3, setTampilKofaktorOrdo3] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
-  
-  const [kofaktorOrdo3, setKofaktorOrdo3] = useState(['']);
 
+  //Variable tampung hasil
+  const [kofaktorOrdo3,setKofaktorOrdo3] = useState([''])
+
+  //Validasi sudah dihitung
   const [isClicked, setIsClicked] = useState(false);
 
+  //Validasi sudah diinput
+  const [isMatrixChanged, setIsMatrixChanged] = useState(false);
+
+  //Mengatur Inputan
   function handleInputChange(event,row,col){
     const value = parseFloat(event.target.value)
     const newMatrix = [...matrixKofaktorOrdo3]
     newMatrix[row][col]= isNaN(value) ? 0 : value
+
     setMatrixKofaktorOrdo3(newMatrix)
+    setIsMatrixChanged(true)
   }
    
   function handleKofaktorOrdo3(){
+    if (!isMatrixChanged) {
+      toast('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
+
     const [a,b,c] = matrixKofaktorOrdo3[0]
     const [d,e,g] = matrixKofaktorOrdo3[1]
     const [h,i,j] = matrixKofaktorOrdo3[2]
@@ -78,24 +101,69 @@ const Kofaktor3 = () => {
   // Mengatur Simpan, Hitung, Hasil
   const SimpanKofOrdo3 = (e) => {
     e.preventDefault();
-
-    toast.success('Perhitungan disimpan 🙂✨ ', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    let dataKofOrdo3Obj = {
-      ID: 'Kofaktor Ordo 3',
-      MatrixKofaktorOrdo3: matrixKofaktorOrdo3,
-      KofaktorOrdo3: kofaktorOrdo3
-    };
-
-    setDataKofOrdo3((prevDataKofOrdo3) => [...prevDataKofOrdo3, dataKofOrdo3Obj]);
+  
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+  
+    if (matrixKofaktorOrdo3 !== null && kofaktorOrdo3 !== null) {
+      const isDataExist = dataKofOrdo3.some((data) =>
+        JSON.stringify(data.MatrixKofaktorOrdo3) === JSON.stringify(matrixKofaktorOrdo3)
+      );
+  
+      if (isDataExist) {
+        toast.warning('Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.success('Perhitungan disimpan 🙂✨ ', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+  
+        let dataKofOrdo3Obj = {
+          ID: 'Kofaktor Ordo 3',
+          MatrixKofaktorOrdo3: matrixKofaktorOrdo3,
+          KofaktorOrdo3: kofaktorOrdo3
+        };
+  
+        setDataKofOrdo3((prevDataKofOrdo3) => [...prevDataKofOrdo3, dataKofOrdo3Obj]);
+      }
+    } else {
+      toast.warning('Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   useEffect(() => {
@@ -103,6 +171,20 @@ const Kofaktor3 = () => {
   }, [dataKofOrdo3]);
 
   const ResetKofOrdo3 = () => {
+     //Cek apakah data matriks sudah kosong
+     if (matrixKofaktorOrdo3.flat().every(val => val === '')) {
+      toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data matriks kosong
+    }
     setKofaktorOrdo3(null);
     setMatrixKofaktorOrdo3([
       ['', '', ''],
@@ -115,6 +197,7 @@ const Kofaktor3 = () => {
       ['', '', '']
     ]);
     setIsClicked(false)
+    setIsMatrixChanged(false)
     toast.error('Perhitungan Telah Dihapus ❌', {
       position: "top-right",
       autoClose: 5000,

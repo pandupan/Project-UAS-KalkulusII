@@ -6,19 +6,38 @@ import 'react-toastify/dist/ReactToastify.css';
 import Latex from 'react-latex'
 
 const Adjoinordo3 = () => {
-
+  //State Awal Matrix & Hasil Kofaktor
   const [matrixAdjOrdo3, setMatrixAdjOrdo3] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
   
+  //Variabel hitung hasil
   const [adjoinOrdo3, setAdjoinOrdo3] = useState(['']);
 
+  //Validasi sudah diinput
   const [isClicked, setIsClicked] = useState(false);
 
-  
+  //Validasi sudah diinput
+  const [isMatrixChanged, setIsMatrixChanged] = useState(false);
+
+  //Mereset data
   const resetAdjoinOrdo3 = () => {
+     // Cek apakah data matriks sudah kosong
+  if (matrixAdjOrdo3.flat().every(val => val === '')) {
+    toast.error('Input matriks sudah kosong. Tidak dapat mereset 🚫', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    return; // Berhenti jika data matriks kosong
+  }
     setAdjoinOrdo3(['']);
     setMatrixAdjOrdo3([
       ['', '', ''],
@@ -26,6 +45,7 @@ const Adjoinordo3 = () => {
       ['', '', '']
     ]);
     setIsClicked(false)
+    setIsMatrixChanged(false)
 
     toast.error('Perhitungan Telah Dihapus ❌', {
       position: "top-right",
@@ -36,9 +56,10 @@ const Adjoinordo3 = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
   
+  //Mengambil Data Dari Local Storage & Menambahkan Data Baru
   const [dataAdjOrdo3, setDataAdjOrdo3] = useState(() => {
     const storedDataAdjOrdo3 = localStorage.getItem('AdjOrdo3');
     return storedDataAdjOrdo3 ? JSON.parse(storedDataAdjOrdo3) : [];
@@ -47,24 +68,71 @@ const Adjoinordo3 = () => {
   const simpanAdjoinOrdo3 = (e) => {
     e.preventDefault();
 
-    toast.success('Perhitungan disimpan 🙂✨ ', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    if (!isMatrixChanged) {
+      toast.warning("Belum ada Input pada matriks, lakukan perhitungan terlebih dahulu ⚠️", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
+    if (matrixAdjOrdo3.some((row) => row.some((val) => val === 0)) || adjoinOrdo3.some((val) => val === 0)) {
+      const isDataExist = dataAdjOrdo3.some((data) =>
+        JSON.stringify(data.MatrixAdjoinOrdo3) === JSON.stringify(matrixAdjOrdo3)
+      );
   
-    let dataAdjoinOrdo3Obj = {
-      ID: 'Adjoin Ordo 3',
-      MatrixAdjoinOrdo3: matrixAdjOrdo3,
-      AdjoinOrdo3: adjoinOrdo3,
-    };
+      if (isDataExist) {
+        toast.warning(
+          'Perhitungan sudah disimpan, tidak dapat menyimpan perhitungan yang sama 💔✨ ',
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          }
+        );
+      } else {
+        toast.success('Perhitungan disimpan 🙂✨ ', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
   
-    setDataAdjOrdo3((prevDataAdjOrdo3) => [...prevDataAdjOrdo3, dataAdjoinOrdo3Obj]);
+        let dataAdjoinOrdo3Obj = {
+          ID: 'Adjoin Ordo 3',
+          MatrixAdjoinOrdo3: matrixAdjOrdo3,
+          AdjoinOrdo3: adjoinOrdo3,
+        };
+  
+        setDataAdjOrdo3((prevDataAdjOrdo3) => [...prevDataAdjOrdo3, dataAdjoinOrdo3Obj]);
+      }
+    } else {
+      toast.warning('Silakan Lakukan perhitungan terlebih dahulu sebelum menyimpan ⛔', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
   };
   
   useEffect(() => {
@@ -75,10 +143,26 @@ const Adjoinordo3 = () => {
     const value = parseFloat(event.target.value);
     const newMatrix = [...matrixAdjOrdo3];
     newMatrix[row][col] = isNaN(value) ? 0 : value;
+
     setMatrixAdjOrdo3(newMatrix);
+    setIsMatrixChanged(true)
   }
   
   function handleAdjoinOrdo3(){
+
+    if (!isMatrixChanged || matrixAdjOrdo3.flat().every(val => val === '')) {
+      toast.warning('Input matriks kosong, tambahkan data terlebih dahulu 🙂', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Berhenti jika data kosong
+    }
     const [a,b,c] = matrixAdjOrdo3[0]
     const [d,e,g] = matrixAdjOrdo3[1]
     const [h,i,j] = matrixAdjOrdo3[2]
@@ -290,7 +374,6 @@ const Adjoinordo3 = () => {
                     <Latex>
                       {`= $$\\begin{bmatrix} ${adjoinOrdo3 ? adjoinOrdo3[0] : 0} \\end{bmatrix}$$`}
                     </Latex>
-                    {console.log(adjoinOrdo3)}
                   </div>
                 </div>
 
