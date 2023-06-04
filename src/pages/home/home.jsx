@@ -19,7 +19,8 @@ export const Home = () => {
                   The Way to Solve Properly About Determinant
                 </Typography>
                 <Typography className="text-[#FAFAFA] mt-4 " variant='p' sx={{fontFamily : 'Merriweather'}}>
-                  Determinan  membantu kita menemukan invers dari suatu matriks, memberi tahu kita tentang matriks yang berfungsi dalam menentukan sistem persamaan linear, kalkulus dan banyak lagi.
+                  Determinan  membantu kita menemukan invers dari suatu matriks, memberi tahu kita tentang matriks yang 
+                  berfungsi dalam menentukan sistem persamaan linear, kalkulus dan banyak lagi.
                 </Typography>
                 <div className='mt-4'>
                   <Link to="/dashboard">

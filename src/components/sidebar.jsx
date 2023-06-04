@@ -24,6 +24,11 @@ import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
 import AddRoadIcon from '@mui/icons-material/AddRoad'; 
 import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
+const handleKeluarProgram = () => {
+  window.location.href = 'https://www.google.com'; 
+}
 
 const drawerWidth = 240;
 
@@ -224,7 +229,7 @@ export default function Sidebar(props) {
           </List>
         <Divider />
           <List>
-            {['Riwayat','Hapus Riwayat', 'Home',].map((text, index) => {
+            {['Riwayat','Hapus Riwayat', 'Home','Keluar Program'].map((text, index) => {
               let route;
               let icon;
               let OnClickAction;
@@ -250,6 +255,12 @@ export default function Sidebar(props) {
                 case 2:
                   route = '/'
                   icon = <Home/>
+                  break;
+                case 3:
+                  OnClickAction = () =>{
+                    handleKeluarProgram()
+                  } 
+                  icon = <LogoutOutlinedIcon />;
                   break;
                 default:
                   break;
